@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/app1"
+        android:title="App 1"
+        app:showAsAction="always"
+        android:icon="@drawable/currency_24" />
+
+    <item android:id="@+id/app2"
+        app:showAsAction="always"
+        android:title="App 2"
+        android:icon="@drawable/electric_car_24" />
+
+    <item android:id="@+id/app3"
+        app:showAsAction="always"
+        android:title="App 3"
+        android:icon="@drawable/news_24" />
+
+    <item android:id="@+id/app4"
+        app:showAsAction="always"
+        android:title="App 4"
+        android:icon="@drawable/recipes_24" />
+
+</menu>
