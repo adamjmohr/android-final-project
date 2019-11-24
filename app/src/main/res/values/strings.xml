@@ -2,4 +2,9 @@
     <string name="app_name">Android Final</string>
     <string name="hello_message">Hello World!</string>
     <string name="ButtonText">I\’m a button</string>
+    <string name="currency_main">Get the latest foreign exchange rates
+with currency conversion. All currencies supported are listed below. Search for a currency with the 3 letter code abbreviation. Example: CAD for Canadian dollars.</string>
+    <string name="search_text">Search Currencies</string>
+    <string name="search_button">Search</string>
+
 </resources>
