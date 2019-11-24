@@ -10,6 +10,8 @@ import android.view.MenuItem;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.androidlabs.currency.CurrencyMain;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             //what to do when the menu item is selected:
             case R.id.app1:
-                Intent currency = new Intent(MainActivity.this, CurrencyConverter.class);
+                Intent currency = new Intent(MainActivity.this, CurrencyMain.class);
                 startActivity(currency);
                 break;
 

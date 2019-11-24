@@ -1,4 +1,40 @@
 <resources>
+    <string-array name="currencies_array">
+        <item>CAD</item>
+        <item>HKD</item>
+        <item>ISK</item>
+        <item>PHP</item>
+        <item>DKK</item>
+        <item>HUF</item>
+        <item>CZK</item>
+        <item>AUD</item>
+        <item>RON</item>
+        <item>SEK</item>
+        <item>IDR</item>
+        <item>INR</item>
+        <item>BRL</item>
+        <item>RUB</item>
+        <item>HRK</item>
+        <item>JPY</item>
+        <item>THB</item>
+        <item>CHF</item>
+        <item>SGD</item>
+        <item>PLN</item>
+        <item>BGN</item>
+        <item>TRY</item>
+        <item>CNY</item>
+        <item>NOK</item>
+        <item>NZD</item>
+        <item>ZAR</item>
+        <item>USD</item>
+        <item>MXN</item>
+        <item>ILS</item>
+        <item>GBP</item>
+        <item>KRW</item>
+        <item>MYR</item>
+        <item>EUR</item>
+    </string-array>
+
     <string name="app_name">Android Final</string>
     <string name="hello_message">Bonjour!</string>
     <string name="ButtonText">Je suis un bouton</string>
@@ -6,5 +42,11 @@
 avec conversion de devise. Toutes les devises prises en charge sont répertoriées ci-dessous. Recherchez une devise avec l’abréviation de code à 3 lettres. Exemple: CAD pour dollars canadiens.</string>
     <string name="search_text">Rechercher des devises</string>
     <string name="search_button">Chercher</string>
+    <string name="convert_button">Aller au convertisseur</string>
+    <string name="converter">Convertir en</string>
+    <string name="currency_amount">Montant</string>
+    <string name="currency_from">De</string>
+    <string name="currency_to">À</string>
+    <string name="convert">Convertir</string>
 
 </resources>
