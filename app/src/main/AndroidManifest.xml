@@ -16,10 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CurrencyConverter" />
+        <activity android:name=".currency.CurrencyMain" />
         <activity android:name=".ElectricCarFinder" />
         <activity android:name=".NewsHeadlines" />
         <activity android:name=".RecipeSearch" />
+        <activity android:name=".currency.CurrencyConverter" />
+        <activity android:name=".currency.EmptyActivity" />
     </application>
 
 </manifest>
