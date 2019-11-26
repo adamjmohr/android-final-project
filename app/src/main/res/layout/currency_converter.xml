@@ -6,8 +6,8 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:id="@+id/amount"
-        android:text="@string/currency_amount"
-        android:inputType="number"
+        android:hint="@string/currency_amount"
+        android:inputType="numberDecimal"
         android:importantForAutofill="no" />
 
     <Spinner
@@ -35,6 +35,21 @@
         android:layout_height="wrap_content"
         android:id="@+id/after_conversion"
         android:layout_below="@id/run_conversion" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/date"
+        android:layout_below="@id/after_conversion" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
 
 
 </RelativeLayout>

@@ -57,6 +57,5 @@ public class CurrencyMain extends AppCompatActivity {
             startActivity(converter);
         });
 
-
     }
 }

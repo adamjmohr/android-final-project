@@ -2,11 +2,13 @@ package com.example.androidlabs.currency;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,10 +17,13 @@ import com.example.androidlabs.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -33,6 +38,9 @@ public class CurrencyConverter extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.currency_converter);
+
+        ProgressBar progressBar = findViewById(R.id.progress);
+        progressBar.setVisibility(View.VISIBLE);
 
         EditText amount = findViewById(R.id.amount);
 
@@ -71,7 +79,7 @@ public class CurrencyConverter extends AppCompatActivity {
     private class CurrencyQuery extends AsyncTask<String, Integer, String> {
 
         private String date, baseCurrency, targetCurrency;
-        private double rate, amount;
+        private double amount, rate;
 
         public CurrencyQuery(String baseCurrency, String targetCurrency, double amount) {
             this.baseCurrency = baseCurrency;
@@ -83,7 +91,7 @@ public class CurrencyConverter extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             String ret = null;
 
-            String jsonUrl = "https://api.exchangeratesapi.io/latest?base=USD&symbols=EUR";
+            String jsonUrl = "https://api.exchangeratesapi.io/latest?base=" + baseCurrency + "&symbols=" + targetCurrency;
             try {       // Connect to the server:
                 URL url = new URL(jsonUrl);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -100,10 +108,17 @@ public class CurrencyConverter extends AppCompatActivity {
                 }
                 String result = sb.toString();
                 JSONObject jObject = new JSONObject(result);
-                //rate = jObject.getJSONObject("rates");
+                rate = jObject.getJSONObject("rates").getDouble(targetCurrency);
+
+                BigDecimal roundedRate = new BigDecimal(rate * amount).setScale(2, RoundingMode.HALF_UP);
+                rate = roundedRate.doubleValue();
+                publishProgress(25);
 
                 baseCurrency = jObject.getString("base");
+                publishProgress(50);
+
                 date = jObject.getString("date");
+                publishProgress(75);
 
             } catch (MalformedURLException mfe) {
                 ret = "Malformed URL exception";
@@ -121,15 +136,24 @@ public class CurrencyConverter extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
+            ProgressBar progressBar = findViewById(R.id.progress);
+            progressBar.setVisibility(View.INVISIBLE);
+
+            TextView afterConversion = findViewById(R.id.after_conversion);
+            afterConversion.setText(String.format("Conversion Rate: %s", rate));
+
+            TextView dateField = findViewById(R.id.date);
+            dateField.setText(String.format("Date Retrieved: %s", date));
+
         }
 
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
 
-//            ProgressBar progressBar = findViewById(R.id.progress);
-//            progressBar.setVisibility(View.VISIBLE);
-//            progressBar.setProgress(values[0]);
+            ProgressBar progressBar = findViewById(R.id.progress);
+            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setProgress(values[0]);
         }
 
 
