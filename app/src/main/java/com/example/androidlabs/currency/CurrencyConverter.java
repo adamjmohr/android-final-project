@@ -1,26 +1,38 @@
 package com.example.androidlabs.currency;
 
-import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidlabs.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+
 public class CurrencyConverter extends AppCompatActivity {
 
-    public static final int EMPTY_ACTIVITY = 345;
+    private double amountToConvert;
+    private String currencyFrom, currencyTo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.currency_converter);
-
-        boolean isTablet = findViewById(R.id.fragmentLocation) != null; //check if the FrameLayout is loaded
 
         EditText amount = findViewById(R.id.amount);
 
@@ -44,23 +56,81 @@ public class CurrencyConverter extends AppCompatActivity {
 
         Button runConversion = findViewById(R.id.run_conversion);
         runConversion.setOnClickListener(clk -> {
-            Bundle dataToPass = new Bundle();
+            amountToConvert = Double.parseDouble(amount.getText().toString());
+            currencyFrom = spinnerFrom.getSelectedItem().toString();
+            currencyTo = spinnerTo.getSelectedItem().toString();
 
-            if (isTablet) {
-                CurrencyFragment cFragment = new CurrencyFragment(); //add a DetailFragment
-                cFragment.setArguments(dataToPass); //pass it a bundle for information
-                cFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(R.id.fragmentLocation, cFragment) //Add the fragment in FrameLayout
-                        .addToBackStack("AnyName") //make the back button undo the transaction
-                        .commit(); //actually load the fragment.
-            } else {//isPhone
-                Intent nextActivity = new Intent(CurrencyConverter.this, EmptyActivity.class);
-                nextActivity.putExtras(dataToPass); //send data to next activity
-                startActivityForResult(nextActivity, EMPTY_ACTIVITY); //make the transition
-            }
+            CurrencyQuery query = new CurrencyQuery(currencyFrom, currencyTo, amountToConvert);
+            query.execute();
+
         });
+
+
+    }
+
+    private class CurrencyQuery extends AsyncTask<String, Integer, String> {
+
+        private String date, baseCurrency, targetCurrency;
+        private double rate, amount;
+
+        public CurrencyQuery(String baseCurrency, String targetCurrency, double amount) {
+            this.baseCurrency = baseCurrency;
+            this.targetCurrency = targetCurrency;
+            this.amount = amount;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String ret = null;
+
+            String jsonUrl = "https://api.exchangeratesapi.io/latest?base=USD&symbols=EUR";
+            try {       // Connect to the server:
+                URL url = new URL(jsonUrl);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                InputStream inStream = urlConnection.getInputStream();
+
+                //Set up the JSON object parser:
+                // json is UTF-8 by default
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inStream, StandardCharsets.UTF_8), 8);
+                StringBuilder sb = new StringBuilder();
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line).append("\n");
+                }
+                String result = sb.toString();
+                JSONObject jObject = new JSONObject(result);
+                //rate = jObject.getJSONObject("rates");
+
+                baseCurrency = jObject.getString("base");
+                date = jObject.getString("date");
+
+            } catch (MalformedURLException mfe) {
+                ret = "Malformed URL exception";
+            } catch (IOException ioe) {
+                ret = "IO Exception. Is the Wifi connected?";
+            } catch (JSONException e) {
+                ret = "Json exception";
+            }
+
+            //What is returned here will be passed as a parameter to onPostExecute:
+            return ret;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+
+//            ProgressBar progressBar = findViewById(R.id.progress);
+//            progressBar.setVisibility(View.VISIBLE);
+//            progressBar.setProgress(values[0]);
+        }
 
 
     }
