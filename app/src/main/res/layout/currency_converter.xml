@@ -27,15 +27,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/run_conversion"
-        android:layout_toEndOf="@id/currencies_spinner_to"
-        android:text="@string/convert"/>
+        android:layout_below="@id/amount"
+        android:text="@string/convert" />
 
-    <FrameLayout
-        android:id="@+id/fragmentLocation"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@id/run_conversion" />
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/after_conversion"
+        android:layout_below="@id/run_conversion" />
 
 
 </RelativeLayout>

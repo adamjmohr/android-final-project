@@ -32,9 +32,16 @@
         android:layout_below="@id/searchButton" />
 
     <ListView
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:id="@+id/theList"
         android:layout_below="@id/goToConvert" />
+
+    <FrameLayout
+        android:id="@+id/fragmentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/theList"
+        android:layout_below="@id/goToConvert"/>
 
 </RelativeLayout>
