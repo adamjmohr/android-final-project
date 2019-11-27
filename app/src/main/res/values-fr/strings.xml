@@ -57,4 +57,6 @@ avec conversion de devise. Toutes les devises prises en charge sont répertorié
     <string name="carVersion">Numéro de Version:1.0</string>
     <string name="addFavorite">Ajouter aux Favoris</string>
     <string name="go">Aller</string>
+    <string name="back">Retour</string>
+
 </resources>

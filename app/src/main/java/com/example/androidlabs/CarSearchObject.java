@@ -5,12 +5,21 @@ public class CarSearchObject {
     private String lat;
     private String lon;
     private String telephone;
+    private long id;
 
     public CarSearchObject(String title, String lat, String lon, String telephone){
         this.title = title;
         this.lat = lat;
         this.lon = lon;
         this.telephone = telephone;
+    }
+
+    public CarSearchObject(String title, String lat, String lon, String telephone, long id){
+        this.title = title;
+        this.lat = lat;
+        this.lon = lon;
+        this.telephone = telephone;
+        this.id = id;
     }
 
     public String getTitle(){
@@ -28,4 +37,6 @@ public class CarSearchObject {
     public String getTelephone(){
         return telephone;
     }
+
+    public long getId(){ return id; }
 }
