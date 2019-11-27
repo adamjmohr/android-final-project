@@ -57,4 +57,15 @@ avec conversion de devise. Toutes les devises prises en charge sont répertorié
     <string name="carVersion">Numéro de Version:1.0</string>
     <string name="addFavorite">Ajouter aux Favoris</string>
     <string name="go">Aller</string>
+
+    <!-- This is for Recipe Values. Thanks! DNT! -->
+
+    <string name="recipeSearchButtonText">SearchInFrench</string>
+    <string name="recipeSearchEditText">What are you looking for?InFrench</string>
+    <string name="recipeFragmentUrlText">Publisher Url: InFrench</string>
+    <string name="recipeFragmentImageDescription">This Recipe\'s ImageInFrench</string>
+
+
+    <!-- This is the end of Recipe Values. Thanks! DNT! -->
 </resources>
+
