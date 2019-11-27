@@ -34,7 +34,6 @@
             android:orientation="horizontal">
 
             <EditText
-                android:inputType="text"
                 android:id="@+id/searchEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
