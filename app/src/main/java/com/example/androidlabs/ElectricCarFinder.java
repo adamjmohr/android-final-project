@@ -1,9 +1,12 @@
 package com.example.androidlabs;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,7 +47,8 @@ public class ElectricCarFinder extends AppCompatActivity {
     private ArrayList<CarSearchObject> search;
     private ProgressBar progressBar;
     private Button searchButton;
-    BaseAdapter myAdapter;
+    private BaseAdapter myAdapter;
+    private SQLiteDatabase db;
     public static final String ITEM_POSITION = "POSITION";
     public static final int EMPTY_ACTIVITY = 345;
 
@@ -52,6 +56,9 @@ public class ElectricCarFinder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.car_main);
+
+        CarDatabaseHelper dbOpener = new CarDatabaseHelper(this);
+        db = dbOpener.getWritableDatabase();
 
         Toolbar toolbar = findViewById(R.id.carToolbar);
         setSupportActionBar(toolbar);
@@ -82,6 +89,8 @@ public class ElectricCarFinder extends AppCompatActivity {
             edit.putString("Longitude", editLong.getText().toString());
             edit.commit();
 
+            search = new ArrayList<>();
+
             CarQuery query = new CarQuery(editLat.getText().toString(), editLong.getText().toString());
             query.execute();
 
@@ -95,9 +104,10 @@ public class ElectricCarFinder extends AppCompatActivity {
             dataToPass.putString(CarDatabaseHelper.COL_TITLE, search.get(position).getTitle());
             dataToPass.putString(CarDatabaseHelper.COL_PHONENUM, search.get(position).getTelephone());
             dataToPass.putInt(ITEM_POSITION, position);
-            dataToPass.putLong(CarDatabaseHelper.COL_ID, id);
+            dataToPass.putLong(CarDatabaseHelper.COL_ID, position);
 
-            boolean isTablet = findViewById(R.id.fragmentLocation) != null;
+            boolean isTablet = findViewById(R.id.carFragmentLocation) != null;
+
             if(isTablet)
             {
                 CarSearchDetailFragment dFragment = new CarSearchDetailFragment();
@@ -105,7 +115,7 @@ public class ElectricCarFinder extends AppCompatActivity {
                 dFragment.setTablet(true);
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.carFragmentLocation, dFragment)
+                        .replace(R.id.carFragmentLocation, dFragment)
                         .addToBackStack("AnyName")
                         .commit();
             }
@@ -120,6 +130,36 @@ public class ElectricCarFinder extends AppCompatActivity {
 
 
         
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == EMPTY_ACTIVITY)
+        {
+            if(resultCode == RESULT_OK) //if you hit the delete button instead of back button
+            {
+                long id = data.getIntExtra(CarDatabaseHelper.COL_ID, 0);
+                addToFavorite((int)id);
+            }
+        }
+    }
+
+    public void addToFavorite(int id){
+        CarSearchObject addObj = search.get(id);
+
+        ContentValues newRowValues = new ContentValues();
+
+        newRowValues.put(CarDatabaseHelper.COL_PHONENUM, addObj.getTelephone());
+        newRowValues.put(CarDatabaseHelper.COL_LON, addObj.getLon());
+        newRowValues.put(CarDatabaseHelper.COL_LAT, addObj.getLat());
+        newRowValues.put(CarDatabaseHelper.COL_TITLE, addObj.getTitle());
+
+        long newId = db.insert(CarDatabaseHelper.TABLE_NAME, null, newRowValues);
+        if(newId > 0 ){
+            Toast.makeText(this, "Added to Favorite", Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -284,7 +324,8 @@ public class ElectricCarFinder extends AppCompatActivity {
                 break;
 
             case R.id.carFav:
-                Toast.makeText(this, "Favorite", Toast.LENGTH_LONG).show();
+                Intent favPage = new Intent(ElectricCarFinder.this, CarFavoritesList.class);
+                startActivity(favPage);
                 break;
 
         }
