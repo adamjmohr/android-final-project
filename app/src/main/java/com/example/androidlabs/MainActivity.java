@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.app4:
-                Intent newsHeadlines = new Intent(MainActivity.this, NewsHeadlines.class);
-                startActivity(newsHeadlines);
+                Intent news_search = new Intent(MainActivity.this, News_search.class);
+                startActivity(news_search);
                 break;
         }
         return true;

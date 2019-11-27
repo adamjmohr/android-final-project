@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".News_search"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,7 +19,6 @@
         </activity>
         <activity android:name=".CurrencyConverter" />
         <activity android:name=".ElectricCarFinder" />
-        <activity android:name=".NewsHeadlines" />
         <activity android:name=".RecipeSearch" />
     </application>
 

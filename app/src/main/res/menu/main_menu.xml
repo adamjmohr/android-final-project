@@ -14,7 +14,7 @@
 
     <item android:id="@+id/app3"
         app:showAsAction="always"
-        android:title="App 3"
+        android:title="News Search"
         android:icon="@drawable/news_24" />
 
     <item android:id="@+id/app4"
