@@ -49,4 +49,12 @@ avec conversion de devise. Toutes les devises prises en charge sont répertorié
     <string name="currency_to">À</string>
     <string name="convert">Convertir</string>
 
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="favorite">Préféré</string>
+    <string name="help">Aidez</string>
+    <string name="carAuthor">Auteur: Bruce Tovee</string>
+    <string name="carVersion">Numéro de Version:1.0</string>
+    <string name="addFavorite">Ajouter aux Favoris</string>
+    <string name="go">Aller</string>
 </resources>
