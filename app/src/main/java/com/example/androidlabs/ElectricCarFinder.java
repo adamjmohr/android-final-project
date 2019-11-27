@@ -45,6 +45,8 @@ public class ElectricCarFinder extends AppCompatActivity {
     private ProgressBar progressBar;
     private Button searchButton;
     BaseAdapter myAdapter;
+    public static final String ITEM_POSITION = "POSITION";
+    public static final int EMPTY_ACTIVITY = 345;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +85,37 @@ public class ElectricCarFinder extends AppCompatActivity {
             CarQuery query = new CarQuery(editLat.getText().toString(), editLong.getText().toString());
             query.execute();
 
+        });
+
+        theList.setOnItemClickListener( (list, item, position, id) -> {
+
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString(CarDatabaseHelper.COL_LAT, search.get(position).getLat());
+            dataToPass.putString(CarDatabaseHelper.COL_LON, search.get(position).getLon());
+            dataToPass.putString(CarDatabaseHelper.COL_TITLE, search.get(position).getTitle());
+            dataToPass.putString(CarDatabaseHelper.COL_PHONENUM, search.get(position).getTelephone());
+            dataToPass.putInt(ITEM_POSITION, position);
+            dataToPass.putLong(CarDatabaseHelper.COL_ID, id);
+
+            boolean isTablet = findViewById(R.id.fragmentLocation) != null;
+            if(isTablet)
+            {
+                CarSearchDetailFragment dFragment = new CarSearchDetailFragment();
+                dFragment.setArguments( dataToPass );
+                dFragment.setTablet(true);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.carFragmentLocation, dFragment)
+                        .addToBackStack("AnyName")
+                        .commit();
+            }
+            else //isPhone
+            {
+                Intent nextActivity = new Intent(ElectricCarFinder.this, CarEmptyActivity.class);
+                nextActivity.putExtras(dataToPass); //send data to next activity
+                startActivityForResult(nextActivity, EMPTY_ACTIVITY); //make the transition
+
+            }
         });
 
 

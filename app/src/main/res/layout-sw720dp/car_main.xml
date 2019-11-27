@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/carToolbar"/>
+
+    <EditText
+        android:id="@+id/carEditLat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:layout_below="@id/carToolbar"
+        android:layout_alignParentStart="true"
+        android:hint="@string/latitude"/>
+
+    <EditText
+        android:id="@+id/carEditLong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/carEditLat"
+        android:hint="@string/longitude"/>
+
+    <Button
+        android:id="@+id/carButtonSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/search_button"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/carEditLong"/>
+
+    <ListView
+        android:id="@+id/carListSearch"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_below="@id/carButtonSearch"
+        android:layout_alignParentStart="true" />
+
+    <ProgressBar
+        android:id="@+id/carProgressCar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_alignBottom="@id/carButtonSearch"
+        android:visibility="invisible"
+        android:layout_below="@id/carEditLong"/>
+
+    <FrameLayout
+        android:id="@+id/carFragmentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/carListSearch"
+        android:layout_below="@id/carButtonSearch">
+
+
+    </FrameLayout>
+</RelativeLayout>

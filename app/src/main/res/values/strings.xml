@@ -55,6 +55,8 @@ with currency conversion. All currencies supported are listed below. Search for 
     <string name="help">Help</string>
     <string name="carAuthor">Author: Bruce Tovee</string>
     <string name="carVersion">Version Number:1.0</string>
+    <string name="addFavorite">Add to favorites</string>
+    <string name="go">Go</string>
 
 
 
