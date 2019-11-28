@@ -52,6 +52,7 @@ public class ElectricCarFinder extends AppCompatActivity {
     public static final String ITEM_POSITION = "POSITION";
     public static final int EMPTY_ACTIVITY = 345;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -326,6 +327,11 @@ public class ElectricCarFinder extends AppCompatActivity {
             case R.id.carFav:
                 Intent favPage = new Intent(ElectricCarFinder.this, CarFavoritesList.class);
                 startActivity(favPage);
+                break;
+
+            case R.id.carHome:
+                Intent homePage = new Intent(ElectricCarFinder.this, MainActivity.class);
+                startActivity(homePage);
                 break;
 
         }

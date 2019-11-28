@@ -25,6 +25,8 @@
         <activity android:name=".CarSearchDetailFragment" />
         <activity android:name=".CarEmptyActivity" />
         <activity android:name=".CarFavoritesList" />
+        <activity android:name=".CarFavEmpty" />
+        <activity android:name=".CarFavDetailFragment" />
         <activity android:name=".NewsHeadlines" />
         <activity android:name=".RecipeSearch" />
         <activity android:name=".currency.CurrencyConverter" />
