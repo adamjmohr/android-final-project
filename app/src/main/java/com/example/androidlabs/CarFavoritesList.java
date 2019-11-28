@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -67,7 +69,62 @@ public class CarFavoritesList extends AppCompatActivity {
             startActivity(backPage);
 
         });
+
+        theList.setOnItemClickListener( (list, item, position, id) -> {
+
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString(CarDatabaseHelper.COL_LAT, favorites.get(position).getLat());
+            dataToPass.putString(CarDatabaseHelper.COL_LON, favorites.get(position).getLon());
+            dataToPass.putString(CarDatabaseHelper.COL_TITLE, favorites.get(position).getTitle());
+            dataToPass.putString(CarDatabaseHelper.COL_PHONENUM, favorites.get(position).getTelephone());
+            dataToPass.putInt(ElectricCarFinder.ITEM_POSITION, position);
+            dataToPass.putLong(CarDatabaseHelper.COL_ID, id);
+
+            boolean isTablet = findViewById(R.id.carFragmentLocation) != null;
+
+            if(isTablet)
+            {
+                CarFavDetailFragment dFragment = new CarFavDetailFragment();
+                dFragment.setArguments( dataToPass );
+                dFragment.setTablet(true);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.carFavFragmentLocation, dFragment)
+                        .addToBackStack("AnyName")
+                        .commit();
+            }
+            else //isPhone
+            {
+                Intent nextActivity = new Intent(CarFavoritesList.this, CarFavEmpty.class);
+                nextActivity.putExtras(dataToPass); //send data to next activity
+                startActivityForResult(nextActivity, ElectricCarFinder.EMPTY_ACTIVITY); //make the transition
+
+            }
+        });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == ElectricCarFinder.EMPTY_ACTIVITY)
+        {
+            if(resultCode == RESULT_OK) //if you hit the delete button instead of back button
+            {
+                long id = data.getIntExtra(CarDatabaseHelper.COL_ID, 0);
+                int pos = data.getIntExtra(ElectricCarFinder.ITEM_POSITION, 0);
+                removeFromFavorite((int)id, pos);
+            }
+        }
+    }
+
+    public void removeFromFavorite(int id, int pos) {
+        db.delete(CarDatabaseHelper.TABLE_NAME, CarDatabaseHelper.COL_ID + "=" + id, null);
+        favorites.remove(pos);
+        Toast.makeText(this, "Removed From Favorite", Toast.LENGTH_LONG).show();
+        myAdapter.notifyDataSetChanged();
+
+    }
+
 
     private class CarFavListAdapter extends BaseAdapter {
 

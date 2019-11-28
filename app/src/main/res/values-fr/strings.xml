@@ -58,5 +58,6 @@ avec conversion de devise. Toutes les devises prises en charge sont répertorié
     <string name="addFavorite">Ajouter aux Favoris</string>
     <string name="go">Aller</string>
     <string name="back">Retour</string>
+    <string name="removeFav">Supprimer le Favorie</string>
 
 </resources>

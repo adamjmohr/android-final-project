@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/carFavBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        app:srcCompat="@drawable/left" />
+
+    <TextView
+        android:id="@+id/carFavTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/favorite"
+        android:layout_below="@id/carFavBackButton"
+        android:layout_alignParentStart="true"/>
+
+    <ListView
+        android:id="@+id/carFavList"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_below="@id/carFavTitle"
+        android:layout_alignParentStart="true"/>
+
+    <FrameLayout
+        android:id="@+id/carFavFragmentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/carFavList"
+        android:layout_below="@id/carFavTitle"
+        android:layout_marginLeft="20dp"/>
+
+
+</RelativeLayout>
