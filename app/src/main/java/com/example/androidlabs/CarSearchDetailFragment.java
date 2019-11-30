@@ -120,17 +120,15 @@ public class CarSearchDetailFragment extends Fragment {
                 ElectricCarFinder parent = (ElectricCarFinder)getActivity();
                 parent.addToFavorite(id);
 
-                parent.getSupportFragmentManager().beginTransaction().remove(this).commit();
-            }
+                            }
             //for Phone:
-            else //You are only looking at the details, you need to go back to the previous list page
-            {
+            else             {
                 CarEmptyActivity parent = (CarEmptyActivity) getActivity();
                 Intent backToFragmentExample = new Intent();
                 backToFragmentExample.putExtra(CarDatabaseHelper.COL_ID, id );
 
                 parent.setResult(Activity.RESULT_OK, backToFragmentExample); //send data back to FragmentExample in onActivityResult()
-                parent.finish(); //go back
+                parent.finish();
             }
         });
 

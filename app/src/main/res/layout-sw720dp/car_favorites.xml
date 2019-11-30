@@ -14,6 +14,7 @@
     <TextView
         android:id="@+id/carFavTitle"
         android:layout_width="match_parent"
+        android:textSize="30sp"
         android:layout_height="wrap_content"
         android:text="@string/favorite"
         android:layout_below="@id/carFavBackButton"
