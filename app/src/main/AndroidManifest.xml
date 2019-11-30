@@ -28,7 +28,7 @@
         <activity android:name=".NewsHeadlines" />
         <activity android:name=".RecipeSearch" />
         <activity android:name=".currency.CurrencyConverter" />
-        <activity android:name=".currency.EmptyActivity" />
+        <activity android:name=".currency.CurrencyEmptyActivity" />
     </application>
 
 </manifest>

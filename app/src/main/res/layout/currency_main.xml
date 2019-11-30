@@ -2,34 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
         android:id="@+id/currency_main"
         android:text="@string/currency_main" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/search_text"
-        android:layout_below="@id/currency_main"
-        android:hint="@string/search_text"
-        android:inputType="text"
-        android:importantForAutofill="no" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchButton"
-        android:text="@string/search_button"
-        android:layout_below="@id/search_text" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/goToConvert"
         android:text="@string/convert_button"
-        android:layout_below="@id/searchButton" />
+        android:layout_below="@id/currency_main" />
 
     <ListView
         android:layout_width="match_parent"
