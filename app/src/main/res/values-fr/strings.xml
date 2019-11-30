@@ -47,6 +47,7 @@ avec conversion de devise. Toutes les devises prises en charge sont répertorié
     <string name="currency_amount">Montant</string>
     <string name="currency_from">De</string>
     <string name="currency_to">À</string>
+    <string name="save_favourites">Enregistrer dans les favoris</string>
     <string name="convert">Convertir</string>
 
     <string name="latitude">Latitude</string>

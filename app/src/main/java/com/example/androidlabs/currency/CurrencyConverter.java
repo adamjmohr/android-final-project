@@ -1,18 +1,35 @@
 package com.example.androidlabs.currency;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.androidlabs.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,21 +45,127 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 public class CurrencyConverter extends AppCompatActivity {
 
-    private double amountToConvert;
-    private String currencyFrom, currencyTo;
+    /**
+     *
+     */
+    public static final int EMPTY_ACTIVITY = 345;
 
+    /**
+     *
+     */
+    private double amountToConvert;
+    /**
+     *
+     */
+    /**
+     *
+     */
+    private String currencyFrom, currencyTo;
+    /**
+     *
+     */
+    private String duplicateFav = "Favourite already exists";
+    /**
+     *
+     */
+    private ArrayList<CurrencyObject> favourites;
+    /**
+     *
+     */
+    private CurrencyAdapter currencyAdapter;
+
+    /**
+     *
+     */
+    public static final String BASE_CURRENCY = "BASE";
+    /**
+     *
+     */
+    public static final String TARGET_CURRENCY = "TARGET";
+    /**
+     *
+     */
+    public static final String ITEM_POSITION = "POSITION";
+    /**
+     *
+     */
+    public static final String ITEM_ID = "ID";
+
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.currency_converter);
 
-        ProgressBar progressBar = findViewById(R.id.progress);
-        progressBar.setVisibility(View.VISIBLE);
+        SharedPreferences prefs = getSharedPreferences("lastSearch", Context.MODE_PRIVATE);
+        currencyFrom = prefs.getString("lastSearchFrom", "");
+        currencyTo = prefs.getString("lastSearchTo", "");
+        amountToConvert = prefs.getFloat("amount", 0);
+
+        favourites = new ArrayList<>();
+        boolean isTablet = findViewById(R.id.fragmentLocation) != null; //check if the FrameLayout is loaded
+
+        CurrencyDatabaseOpener dbOpener = new CurrencyDatabaseOpener(this);
+        SQLiteDatabase db = dbOpener.getWritableDatabase();
+
+        //query results from database
+        String[] columns = {CurrencyDatabaseOpener.COL_ID, CurrencyDatabaseOpener.COL_CURRENCY_FROM, CurrencyDatabaseOpener.COL_CURRENCY_TO};
+        Cursor results = db.query(false, CurrencyDatabaseOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+
+        //find the column indices:
+        int idColIndex = results.getColumnIndex(CurrencyDatabaseOpener.COL_ID);
+        int fromColIndex = results.getColumnIndex(CurrencyDatabaseOpener.COL_CURRENCY_FROM);
+        int toColIndex = results.getColumnIndex(CurrencyDatabaseOpener.COL_CURRENCY_TO);
+
+        //iterate over the results, return true if there is a next item
+        while (results.moveToNext()) {
+            String currencyFrom = results.getString(fromColIndex);
+            String currencyTo = results.getString(toColIndex);
+            long id = results.getLong(idColIndex);
+
+            //add new message to arrayList
+            favourites.add(new CurrencyObject(id, currencyFrom, currencyTo));
+
+        }
+        results.close();
+
+        ListView theList = findViewById(R.id.theList);
+        currencyAdapter = new CurrencyAdapter();
+        theList.setAdapter(currencyAdapter);
+        theList.setOnItemClickListener((list, item, position, id) -> {
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString(BASE_CURRENCY, currencyAdapter.getItem(position).getName());
+            dataToPass.putString(TARGET_CURRENCY, currencyAdapter.getItem(position).getFavourite());
+            dataToPass.putLong(ITEM_ID, currencyAdapter.getItemId(position));
+            dataToPass.putInt(ITEM_POSITION, position);
+
+            if (isTablet) {
+                CurrencyFragment cFragment = new CurrencyFragment(); //add a DetailFragment
+                cFragment.setArguments(dataToPass); //pass it a bundle for information
+                cFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentLocation, cFragment) //Add the fragment in FrameLayout
+                        .addToBackStack("AnyName") //make the back button undo the transaction
+                        .commit(); //actually load the fragment.
+            } else {//isPhone
+                Intent nextActivity = new Intent(CurrencyConverter.this, CurrencyEmptyActivity.class);
+                nextActivity.putExtras(dataToPass); //send data to next activity
+                startActivityForResult(nextActivity, EMPTY_ACTIVITY); //make the transition
+            }
+        });
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         EditText amount = findViewById(R.id.amount);
+        amount.setText(String.valueOf(amountToConvert));
 
         Spinner spinnerFrom = findViewById(R.id.currencies_spinner_from);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -52,6 +175,10 @@ public class CurrencyConverter extends AppCompatActivity {
         adapterFrom.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinnerFrom.setAdapter(adapterFrom);
+        if (currencyFrom != null) {
+            int spinnerPosition = adapterFrom.getPosition(currencyFrom);
+            spinnerFrom.setSelection(spinnerPosition);
+        }
 
         Spinner spinnerTo = findViewById(R.id.currencies_spinner_to);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -61,6 +188,10 @@ public class CurrencyConverter extends AppCompatActivity {
         adapterTo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinnerTo.setAdapter(adapterTo);
+        if (currencyTo != null) {
+            int spinnerPosition = adapterTo.getPosition(currencyTo);
+            spinnerTo.setSelection(spinnerPosition);
+        }
 
         Button runConversion = findViewById(R.id.run_conversion);
         runConversion.setOnClickListener(clk -> {
@@ -73,20 +204,108 @@ public class CurrencyConverter extends AppCompatActivity {
 
         });
 
+        Button saveFavourite = findViewById(R.id.save_favourites);
+        saveFavourite.setOnClickListener(clk -> {
+
+            Toast.makeText(this, duplicateFav, Toast.LENGTH_LONG).show();
+
+            currencyFrom = spinnerFrom.getSelectedItem().toString();
+            currencyTo = spinnerTo.getSelectedItem().toString();
+
+            //add to the database and get the new ID
+            ContentValues newRowValues = new ContentValues();
+            //put string name in the MESSAGE column:
+            newRowValues.put(CurrencyDatabaseOpener.COL_CURRENCY_FROM, currencyFrom);
+            //put string email in the SENT column:
+            newRowValues.put(CurrencyDatabaseOpener.COL_CURRENCY_TO, currencyTo);
+            //insert in the database:
+            long newId = db.insert(CurrencyDatabaseOpener.TABLE_NAME, null, newRowValues);
+
+            CurrencyObject newFav = new CurrencyObject(newId, currencyFrom, currencyTo);
+            favourites.add(newFav);
+            currencyAdapter.notifyDataSetChanged();
+        });
 
     }
 
+    /**
+     * @param id
+     * @param position
+     */
+    public void deleteMessageId(int id, int position) {
+        Log.i("Delete this message:", " id=" + id);
+        favourites.remove(position);
+        CurrencyDatabaseOpener dbOpener = new CurrencyDatabaseOpener(this);
+        SQLiteDatabase db = dbOpener.getWritableDatabase();
+        db.delete(CurrencyDatabaseOpener.TABLE_NAME, "_id=?",
+                new String[]{Long.toString(id)});
+        currencyAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    //This function only gets called on the phone. The tablet never goes to a new activity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == EMPTY_ACTIVITY) {
+            if (resultCode == RESULT_OK) //if you hit the delete button instead of back button
+            {
+                long id = data.getLongExtra(ITEM_ID, 0);
+                int position = data.getIntExtra(ITEM_POSITION, 0);
+                deleteMessageId((int) id, position);
+                currencyAdapter.notifyDataSetChanged();
+            }
+        }
+    }
+
+    /**
+     *
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences prefs = getSharedPreferences("lastSearch", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        Spinner spinnerFrom = findViewById(R.id.currencies_spinner_from);
+        editor.putString("lastSearchFrom", spinnerFrom.getSelectedItem().toString());
+
+        Spinner spinnerTo = findViewById(R.id.currencies_spinner_to);
+        editor.putString("lastSearchTo", spinnerTo.getSelectedItem().toString());
+
+        EditText amount = findViewById(R.id.amount);
+        editor.putFloat("amount", Math.round(Float.parseFloat(amount.getText().toString())));
+
+        editor.apply();
+    }
+
+    /**
+     *
+     */
     private class CurrencyQuery extends AsyncTask<String, Integer, String> {
 
         private String date, baseCurrency, targetCurrency;
         private double amount, rate;
 
+        /**
+         * @param baseCurrency
+         * @param targetCurrency
+         * @param amount
+         */
         public CurrencyQuery(String baseCurrency, String targetCurrency, double amount) {
             this.baseCurrency = baseCurrency;
             this.targetCurrency = targetCurrency;
             this.amount = amount;
         }
 
+        /**
+         * @param strings
+         * @return
+         */
         @Override
         protected String doInBackground(String... strings) {
             String ret = null;
@@ -132,6 +351,9 @@ public class CurrencyConverter extends AppCompatActivity {
             return ret;
         }
 
+        /**
+         * @param s
+         */
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -147,6 +369,9 @@ public class CurrencyConverter extends AppCompatActivity {
 
         }
 
+        /**
+         * @param values
+         */
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
@@ -156,7 +381,83 @@ public class CurrencyConverter extends AppCompatActivity {
             progressBar.setProgress(values[0]);
         }
 
+    }
 
+    /**
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.currency_menu, menu);
+
+        return true;
+    }
+
+    /**
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            //what to do when the menu item is selected:
+            case R.id.currencyFavourite:
+                Intent currencyFavourites = new Intent(CurrencyConverter.this, CurrencyConverter.class);
+                startActivity(currencyFavourites);
+                break;
+
+            case R.id.currencyHelp:
+                //Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                break;
+        }
+        return true;
+    }
+
+    private class CurrencyAdapter extends BaseAdapter {
+
+        /**
+         * @return
+         */
+        @Override
+        public int getCount() {
+            return favourites.size();
+        }
+
+        /**
+         * @param i
+         * @return
+         */
+        @Override
+        public CurrencyObject getItem(int i) {
+            return favourites.get(i);
+        }
+
+        /**
+         * @param i
+         * @return
+         */
+        @Override
+        public long getItemId(int i) {
+            return getItem(i).getId();
+        }
+
+        /**
+         * @param i
+         * @param view
+         * @param viewGroup
+         * @return
+         */
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            view = getLayoutInflater().inflate(R.layout.currency_listview, null);
+            TextView name = view.findViewById(R.id.currency_name);
+            name.setText(String.format("%s <--> %s", getItem(i).getName(), getItem(i).getFavourite()));
+
+            return view;
+        }
     }
 
 }

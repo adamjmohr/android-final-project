@@ -8,14 +8,29 @@
         android:id="@+id/currency"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Currency: " />
+        android:text="Base Currency: " />
 
     <TextView
-        android:id="@+id/country"
+        android:id="@+id/target"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/currency"
-        android:text="Country: " />
+        android:text="Converted to: " />
+
+    <TextView
+        android:id="@+id/idText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/target"
+        android:text="ID: " />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/idText"
+        android:layout_marginTop="30dp"
+        android:text="Delete" />
 
     <Button
         android:id="@+id/back"
