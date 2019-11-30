@@ -94,7 +94,7 @@ public class CarFavoritesList extends AppCompatActivity {
             dataToPass.putInt(ElectricCarFinder.ITEM_POSITION, position);
             dataToPass.putLong(CarDatabaseHelper.COL_ID, id);
 
-            boolean isTablet = findViewById(R.id.carFragmentLocation) != null;
+            boolean isTablet = findViewById(R.id.carFavFragmentLocation) != null;
 
             if(isTablet)
             {

@@ -15,6 +15,7 @@
         android:id="@+id/carFavTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="30sp"
         android:text="@string/favorite"
         android:layout_below="@id/carFavBackButton"
         android:layout_alignParentStart="true"/>
