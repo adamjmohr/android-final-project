@@ -4,8 +4,15 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Handles inflating of favorite fragment for phones
+ */
 public class CarFavEmpty extends AppCompatActivity {
 
+    /**
+     * Create and display Favorite object fragment
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

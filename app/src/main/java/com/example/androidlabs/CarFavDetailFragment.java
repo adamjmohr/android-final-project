@@ -13,19 +13,59 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+/**
+ * Fragment for display information about selected Favorite chose from list view
+ * Handles buttons actions in fragment
+ */
 public class CarFavDetailFragment extends Fragment {
+    /**
+     * Is the object a tablet
+     */
     private boolean isTablet;
+    /**
+     * Data of the item being displayed in fragment
+     */
     private Bundle dataFromActivity;
+    /**
+     * id of item
+     */
     private int id;
+    /**
+     * position of item
+     */
     private int pos;
+    /**
+     * Title of car charging station
+     */
     private String title;
+    /**
+     * Latitude of car charging station
+     */
     private String lat;
+    /**
+     * Longitude of car charging station
+     */
     private String lon;
+    /**
+     * Phone number of car charging station
+     */
     private String phoneNum;
 
+    /**
+     * Sets boolean containing if the device is a tablet or not
+     * @param tablet Is the device a tablet
+     */
     public void setTablet(boolean tablet) { isTablet = tablet; }
 
 
+    /**
+     * Displays information about car charging station and its placement in the database
+     * Handles the buttons press of the backbutton the gobutton and the remove from favorties button
+     * @param inflater inflater used ti inflate the fragment
+     * @param container container to hold fragment
+     * @param savedInstanceState
+     * @return inflated fragment
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
