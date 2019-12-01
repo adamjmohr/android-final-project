@@ -1,65 +1,22 @@
 <resources>
-    <string-array name="currencies_array">
-        <item>CAD</item>
-        <item>HKD</item>
-        <item>ISK</item>
-        <item>PHP</item>
-        <item>DKK</item>
-        <item>HUF</item>
-        <item>CZK</item>
-        <item>AUD</item>
-        <item>RON</item>
-        <item>SEK</item>
-        <item>IDR</item>
-        <item>INR</item>
-        <item>BRL</item>
-        <item>RUB</item>
-        <item>HRK</item>
-        <item>JPY</item>
-        <item>THB</item>
-        <item>CHF</item>
-        <item>SGD</item>
-        <item>PLN</item>
-        <item>BGN</item>
-        <item>TRY</item>
-        <item>CNY</item>
-        <item>NOK</item>
-        <item>NZD</item>
-        <item>ZAR</item>
-        <item>USD</item>
-        <item>MXN</item>
-        <item>ILS</item>
-        <item>GBP</item>
-        <item>KRW</item>
-        <item>MYR</item>
-        <item>EUR</item>
-    </string-array>
-
     <string name="app_name">Android Final</string>
-    <string name="hello_message">Bonjour!</string>
-    <string name="ButtonText">Je suis un bouton</string>
-    <string name="currency_main">Obtenez les derniers taux de change
-avec conversion de devise. Toutes les devises prises en charge sont répertoriées ci-dessous. Recherchez une devise avec l’abréviation de code à 3 lettres. Exemple: CAD pour dollars canadiens.</string>
-    <string name="search_text">Rechercher des devises</string>
-    <string name="search_button">Chercher</string>
-    <string name="convert_button">Aller au convertisseur</string>
-    <string name="converter">Convertir en</string>
-    <string name="currency_amount">Montant</string>
-    <string name="currency_from">De</string>
-    <string name="currency_to">À</string>
-    <string name="save_favourites">Enregistrer dans les favoris</string>
-    <string name="convert">Convertir</string>
+    <string name="News_favorite_welcome">Vos nouvelles préférées</string>
+    <string name="NewsGoBackToMainButton">Retourner au principal</string>
+    <string name="news_main_toast">Bonne lecture News!</string>
+    <string name="NewsView">Aller à la webview</string>
+    <string name="NewsSave">Enregistrer dans la liste des favoris</string>
+    <string name="Newsback">Retourner</string>
+    <string name="News_item_page">Article de nouvelles</string>
+    <string name="news_search_hint">Tapez un mot clé ici</string>
+    <string name="NewsSearchButton">Chercher</string>
+    <string name="NewsGoToFavoritesButton">Liste de nouvelles préférées</string>
+    <string name="author_name">Simon Mao</string>
+    <string name="instruction">
+        1. Entrez un mot clé et cliquez sur le bouton de recherche \ n
+        2. Cliquez sur un résultat de recherche pour afficher les détails, tels que le titre, la description et l'image \ n
+        3. Lire à partir d’une liste d’articles sauvegardée \ n
 
-    <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
-    <string name="favorite">Préféré</string>
-    <string name="help">Aidez</string>
-    <string name="carAuthor">Auteur: Bruce Tovee</string>
-    <string name="carVersion">Numéro de Version:1.0</string>
-    <string name="addFavorite">Ajouter aux Favoris</string>
-    <string name="go">Aller</string>
-    <string name="back">Retour</string>
-    <string name="removeFav">Supprimer le Favorie</string>
-    <string name="carInstructions">Instructions: 1) Entrez Latitude et Longitude / 2) Cliquez sur le bouton de recherche / 3) Appuyez sur l\'élément pour obtenir plus d\'informations, la navigation et l\'ajout aux favoris / Le bouton Accueil permet de revenir à l\'écran d\'accueil / Le cœur passe à la page des favoris</string>
-
+    </string>
+    <string name="gobacktomain">Retourner</string>
+    <string name="help_menu_title_text">Aidez-moi</string>
 </resources>

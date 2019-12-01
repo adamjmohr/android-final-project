@@ -41,7 +41,7 @@ import static android.view.View.GONE;
 import static android.widget.Toast.LENGTH_SHORT;
 
 public class NewsHeadlines extends AppCompatActivity {
-    private MyListAdapater myListAdapater;
+    private MyListAdapter myListAdapater;
     private ArrayList<News_item> newsList;
     private ProgressBar progressBar;
     private String URL;
@@ -64,7 +64,7 @@ public class NewsHeadlines extends AppCompatActivity {
         Button searchBtn = findViewById(R.id.searchbutton);
 
         ListView newsListView = findViewById(R.id.articlesListView);
-        myListAdapater = new MyListAdapater(newsList,this);
+        myListAdapater = new MyListAdapter(newsList,this);
         myListAdapater.notifyDataSetChanged();
         newsListView.setAdapter(myListAdapater);
 
@@ -81,6 +81,12 @@ public class NewsHeadlines extends AppCompatActivity {
             new AsyncHttpTask().execute(URL);
 
             myListAdapater.notifyDataSetChanged();
+        });
+
+        Button favorList = findViewById(R.id.go_to_favorite);
+        favorList.setOnClickListener(v->{
+            Intent newIntent = new Intent(NewsHeadlines.this, News_favouriteList.class);
+            startActivity(newIntent);
         });
 
         newsListView.setOnItemClickListener(((parent, view, position, id) -> {
@@ -247,50 +253,6 @@ public class NewsHeadlines extends AppCompatActivity {
         }
     }
 
-    private class MyListAdapater extends BaseAdapter{
-        private ArrayList<News_item> newsItems;
-        private Context context;
 
-        public MyListAdapater(ArrayList<News_item> newsItems, Context context) {
-            this.newsItems = newsItems;
-            this.context = context;
-        }
-
-        @Override
-        public int getCount() {
-            return newsItems.size();
-        }
-
-        @Override
-        public News_item getItem(int position) {
-            return newsItems.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View thisRow = convertView;
-
-            if(convertView==null)
-                thisRow = getLayoutInflater().inflate(R.layout.activity_newslist_row_layout,null);
-
-            TextView itemText = thisRow.findViewById(R.id.row_title);
-            News_item item = newsItems.get(position);
-
-            if(!item.getNews_title().isEmpty())
-                itemText.setText(Html.fromHtml(item.getNews_title()));
-            else
-                itemText.setVisibility(GONE);
-
-
-
-         return thisRow;
-
-        }
-    }
 
 }

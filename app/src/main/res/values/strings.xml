@@ -1,5 +1,23 @@
 <resources>
     <string name="app_name">Android Final</string>
-    <string name="hello_message">Hello World!</string>
-    <string name="ButtonText">I\’m a button</string>
+
+    <string name="News_favorite_welcome">Your Favourite News</string>
+    <string name="NewsGoBackToMainButton">Go Back To Main</string>
+    <string name="news_main_toast">Enjoy Reading News!</string>
+    <string name="NewsView">Go to webview</string>
+    <string name="NewsSave">Save to Favorite List</string>
+    <string name="Newsback">Go Back</string>
+    <string name="News_item_page">News Article</string>
+    <string name="news_search_hint">Type a keyword here</string>
+    <string name="NewsSearchButton">Search</string>
+    <string name="NewsGoToFavoritesButton">Favorite news List</string>
+    <string name="author_name">Simon Mao</string>
+    <string name="instruction">
+        1. Enter a keyword and click search button \n
+        2. Click on a search result to show the details, such as title, description and image \n
+        3. Read from a saved article list \n
+
+    </string>
+    <string name="gobacktomain">Go Back</string>
+    <string name="help_menu_title_text">Help</string>
 </resources>
