@@ -60,6 +60,7 @@ with currency conversion. All currencies supported are listed below. Search for 
     <string name="go">Go</string>
     <string name="back">Back</string>
     <string name="removeFav">Remove Favorite</string>
+    <string name="carInstructions">Instructions: 1)Enter Latitude and Longitude/2)Click search button/3)Press item for more info, navigation and adding to favorites/Home button returns to home screen/Heart goes to favorite page</string>
 
 
 

@@ -60,5 +60,6 @@ avec conversion de devise. Toutes les devises prises en charge sont répertorié
     <string name="go">Aller</string>
     <string name="back">Retour</string>
     <string name="removeFav">Supprimer le Favorie</string>
+    <string name="carInstructions">Instructions: 1) Entrez Latitude et Longitude / 2) Cliquez sur le bouton de recherche / 3) Appuyez sur l\'élément pour obtenir plus d\'informations, la navigation et l\'ajout aux favoris / Le bouton Accueil permet de revenir à l\'écran d\'accueil / Le cœur passe à la page des favoris</string>
 
 </resources>
