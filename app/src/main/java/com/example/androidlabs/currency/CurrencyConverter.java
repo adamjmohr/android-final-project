@@ -105,7 +105,9 @@ public class CurrencyConverter extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("lastSearch", Context.MODE_PRIVATE);
         currencyFrom = prefs.getString("lastSearchFrom", "");
         currencyTo = prefs.getString("lastSearchTo", "");
-        amountToConvert = prefs.getFloat("amount", 0);
+
+        BigDecimal roundedRate = new BigDecimal(prefs.getFloat("amount", 0));
+        amountToConvert = roundedRate.setScale(2, RoundingMode.HALF_UP).doubleValue();
 
         favourites = new ArrayList<>();
         boolean isTablet = findViewById(R.id.fragmentLocation) != null; //check if the FrameLayout is loaded
@@ -281,7 +283,13 @@ public class CurrencyConverter extends AppCompatActivity {
         editor.putString("lastSearchTo", spinnerTo.getSelectedItem().toString());
 
         EditText amount = findViewById(R.id.amount);
-        editor.putFloat("amount", Math.round(Float.parseFloat(amount.getText().toString())));
+        if (!amount.getText().toString().equals("")) {
+            BigDecimal roundedRate = new BigDecimal(amount.getText().toString());
+            float rounded = roundedRate.setScale(2, RoundingMode.HALF_UP).floatValue();
+            editor.putFloat("amount", rounded);
+        } else {
+            editor.putFloat("amount", 0);
+        }
 
         editor.apply();
     }
@@ -467,5 +475,4 @@ public class CurrencyConverter extends AppCompatActivity {
             return view;
         }
     }
-
 }

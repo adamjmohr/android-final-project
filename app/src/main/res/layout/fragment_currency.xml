@@ -8,21 +8,24 @@
         android:id="@+id/currency"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Base Currency: " />
+        android:text="Base Currency: "
+        android:layout_marginStart="10dp" />
 
     <TextView
         android:id="@+id/target"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/currency"
-        android:text="Converted to: " />
+        android:text="Converted to: "
+        android:layout_marginStart="10dp" />
 
     <TextView
         android:id="@+id/idText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/target"
-        android:text="ID: " />
+        android:text="ID: "
+        android:layout_marginStart="10dp" />
 
     <Button
         android:id="@+id/deleteButton"
@@ -31,12 +34,5 @@
         android:layout_below="@id/idText"
         android:layout_marginTop="30dp"
         android:text="Delete" />
-
-    <Button
-        android:id="@+id/back"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="Back" />
 
 </RelativeLayout>

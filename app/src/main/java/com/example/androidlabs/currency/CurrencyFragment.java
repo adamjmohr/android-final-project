@@ -41,8 +41,8 @@ public class CurrencyFragment extends Fragment {
 
 
     /**
-     * @param inflater to display XML layout.
-     * @param container used to display layout.
+     * @param inflater           to display XML layout.
+     * @param container          used to display layout.
      * @param savedInstanceState not used.
      * @return View that will be displayed onto phone or tablet.
      */
@@ -96,13 +96,6 @@ public class CurrencyFragment extends Fragment {
             }
         });
 
-        // get the back button, and add a click listener:
-        Button backButton = result.findViewById(R.id.back);
-        backButton.setOnClickListener(clk -> {
-            CurrencyEmptyActivity parent = (CurrencyEmptyActivity) getActivity();
-            assert parent != null;
-            parent.finish();
-        });
         return result;
     }
 }
