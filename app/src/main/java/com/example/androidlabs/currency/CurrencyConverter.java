@@ -50,53 +50,52 @@ import java.util.ArrayList;
 public class CurrencyConverter extends AppCompatActivity {
 
     /**
-     *
+     * Used when opening fragment on phone screen.
      */
     public static final int EMPTY_ACTIVITY = 345;
 
     /**
-     *
+     * Amount User enters to convert into another currency.
      */
     private double amountToConvert;
     /**
-     *
-     */
-    /**
-     *
+     * Target currency after conversion.
      */
     private String currencyFrom, currencyTo;
     /**
-     *
+     * Alert message for duplicate favourite.
      */
     private String duplicateFav = "Favourite already exists";
     /**
-     *
+     * List of favourite currency conversions saved for later use by User.
      */
     private ArrayList<CurrencyObject> favourites;
     /**
-     *
+     * Custom adapter for currency objects.
      */
     private CurrencyAdapter currencyAdapter;
 
     /**
-     *
+     * Base currency.
      */
     public static final String BASE_CURRENCY = "BASE";
     /**
-     *
+     * Target currency.
      */
     public static final String TARGET_CURRENCY = "TARGET";
     /**
-     *
+     * Position within ListView.
      */
     public static final String ITEM_POSITION = "POSITION";
     /**
-     *
+     * Database ID of currency object within database.
      */
     public static final String ITEM_ID = "ID";
 
     /**
-     * @param savedInstanceState
+     * Initialize page with widgets and set listeners on buttons and ListView.
+     *
+     * @param savedInstanceState called on super constructor.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -229,8 +228,10 @@ public class CurrencyConverter extends AppCompatActivity {
     }
 
     /**
-     * @param id
-     * @param position
+     * Delete a favourite from the array list and database.
+     *
+     * @param id       within database of this object.
+     * @param position within the array list of this object.
      */
     public void deleteMessageId(int id, int position) {
         Log.i("Delete this message:", " id=" + id);
@@ -243,9 +244,11 @@ public class CurrencyConverter extends AppCompatActivity {
     }
 
     /**
-     * @param requestCode
-     * @param resultCode
-     * @param data
+     * If returning from phone fragment, call delete function and notify adapter of change in data.
+     *
+     * @param requestCode from phone fragment.
+     * @param resultCode  check to see if favourite is being removed.
+     * @param data        from previous fragment activity.
      */
     //This function only gets called on the phone. The tablet never goes to a new activity
     @Override
@@ -263,7 +266,7 @@ public class CurrencyConverter extends AppCompatActivity {
     }
 
     /**
-     *
+     * Save last conversion in shared preferences to display next time user visits.
      */
     @Override
     protected void onPause() {
@@ -283,18 +286,17 @@ public class CurrencyConverter extends AppCompatActivity {
         editor.apply();
     }
 
-    /**
-     *
-     */
     private class CurrencyQuery extends AsyncTask<String, Integer, String> {
 
         private String date, baseCurrency, targetCurrency;
         private double amount, rate;
 
         /**
-         * @param baseCurrency
-         * @param targetCurrency
-         * @param amount
+         * Parameters needed to query the currency API. Base currency, target currency, and amount to convert.
+         *
+         * @param baseCurrency   base currency.
+         * @param targetCurrency target currency.
+         * @param amount         to convert.
          */
         public CurrencyQuery(String baseCurrency, String targetCurrency, double amount) {
             this.baseCurrency = baseCurrency;
@@ -303,8 +305,10 @@ public class CurrencyConverter extends AppCompatActivity {
         }
 
         /**
-         * @param strings
-         * @return
+         * Query currency API using JSON. Network query so run in background to not disrupt GUI.
+         *
+         * @param strings not used
+         * @return error message.
          */
         @Override
         protected String doInBackground(String... strings) {
@@ -352,7 +356,9 @@ public class CurrencyConverter extends AppCompatActivity {
         }
 
         /**
-         * @param s
+         * After query executes, update page with data.
+         *
+         * @param s passed into super constructor.
          */
         @Override
         protected void onPostExecute(String s) {
@@ -370,7 +376,9 @@ public class CurrencyConverter extends AppCompatActivity {
         }
 
         /**
-         * @param values
+         * Update progress bar as query executes.
+         *
+         * @param values for percentage of progress completed.
          */
         @Override
         protected void onProgressUpdate(Integer... values) {
@@ -384,8 +392,8 @@ public class CurrencyConverter extends AppCompatActivity {
     }
 
     /**
-     * @param menu
-     * @return
+     * @param menu toolbar custom menu.
+     * @return true always.
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -397,8 +405,8 @@ public class CurrencyConverter extends AppCompatActivity {
     }
 
     /**
-     * @param item
-     * @return
+     * @param item switch statement to determine what each icon on the toolbar does.
+     * @return true always.
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -419,7 +427,7 @@ public class CurrencyConverter extends AppCompatActivity {
     private class CurrencyAdapter extends BaseAdapter {
 
         /**
-         * @return
+         * @return number of favourites in list.
          */
         @Override
         public int getCount() {
@@ -427,8 +435,8 @@ public class CurrencyConverter extends AppCompatActivity {
         }
 
         /**
-         * @param i
-         * @return
+         * @param i number in iteration of list.
+         * @return Currency object at i position;
          */
         @Override
         public CurrencyObject getItem(int i) {
@@ -436,8 +444,8 @@ public class CurrencyConverter extends AppCompatActivity {
         }
 
         /**
-         * @param i
-         * @return
+         * @param i number in iteration of list.
+         * @return database id of currency object.
          */
         @Override
         public long getItemId(int i) {
@@ -445,10 +453,10 @@ public class CurrencyConverter extends AppCompatActivity {
         }
 
         /**
-         * @param i
-         * @param view
-         * @param viewGroup
-         * @return
+         * @param i         number in iteration of list.
+         * @param view      XML file to inflate onto screen
+         * @param viewGroup not used.
+         * @return view for this object.
          */
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {

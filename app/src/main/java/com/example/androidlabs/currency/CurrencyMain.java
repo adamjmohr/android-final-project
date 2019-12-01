@@ -35,17 +35,19 @@ import java.util.Iterator;
 public class CurrencyMain extends AppCompatActivity {
 
     /**
-     *
+     * Custom adapter for currency objects.
      */
     private BaseAdapter currencyAdapter;
     /**
-     *
+     * All the queries supported by the API are fetched and stored here to be displayed to the user.
      */
     private ArrayList<CurrencyObject> currencies;
 
 
     /**
-     * @param savedInstanceState
+     * Initializes widgets on the screen.
+     *
+     * @param savedInstanceState not used on this activity after onCreate gets called
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +72,8 @@ public class CurrencyMain extends AppCompatActivity {
     }
 
     /**
-     * @param menu
-     * @return
+     * @param menu calls custom menu XML file.
+     * @return true always
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,8 +85,8 @@ public class CurrencyMain extends AppCompatActivity {
     }
 
     /**
-     * @param item
-     * @return
+     * @param item switch statement to determine what each icon on the toolbar does.
+     * @return true always
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -105,8 +107,8 @@ public class CurrencyMain extends AppCompatActivity {
     private class CurrencyQuery extends AsyncTask<String, Integer, String> {
 
         /**
-         * @param strings
-         * @return
+         * @param strings not used
+         * @return any error message that may have occurred
          */
         @Override
         protected String doInBackground(String... strings) {
@@ -151,7 +153,9 @@ public class CurrencyMain extends AppCompatActivity {
         }
 
         /**
-         * @param s
+         * Loads adapter with Currencies after query is complete.
+         *
+         * @param s passed in to paramter. Not used.
          */
         @Override
         protected void onPostExecute(String s) {
@@ -163,7 +167,7 @@ public class CurrencyMain extends AppCompatActivity {
     public class CurrencyAdapter extends BaseAdapter {
 
         /**
-         * @return
+         * @return number of currencies in list.
          */
         @Override
         public int getCount() {
@@ -171,8 +175,8 @@ public class CurrencyMain extends AppCompatActivity {
         }
 
         /**
-         * @param i
-         * @return
+         * @param i number in iteration of list.
+         * @return Currency object at i position;
          */
         @Override
         public CurrencyObject getItem(int i) {
@@ -180,8 +184,8 @@ public class CurrencyMain extends AppCompatActivity {
         }
 
         /**
-         * @param i
-         * @return
+         * @param i number in iteration of list.
+         * @return database id of currency object.
          */
         @Override
         public long getItemId(int i) {
@@ -189,10 +193,10 @@ public class CurrencyMain extends AppCompatActivity {
         }
 
         /**
-         * @param i
-         * @param view
-         * @param viewGroup
-         * @return
+         * @param i         number in iteration of list.
+         * @param view      XML file to inflate onto screen
+         * @param viewGroup not used.
+         * @return view for this object.
          */
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {

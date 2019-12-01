@@ -9,7 +9,9 @@ import com.example.androidlabs.R;
 public class CurrencyEmptyActivity extends AppCompatActivity {
 
     /**
-     * @param savedInstanceState
+     * Initialize the page for the fragment on phones.
+     *
+     * @param savedInstanceState used in super constructor.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
