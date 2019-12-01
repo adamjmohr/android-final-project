@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/amount"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:hint="@string/currency_amount"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal" />
+
+    <Spinner
+        android:id="@+id/currencies_spinner_from"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_toEndOf="@+id/amount" />
+
+    <Spinner
+        android:id="@+id/currencies_spinner_to"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_toEndOf="@+id/currencies_spinner_from" />
+
+    <Button
+        android:id="@+id/run_conversion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/amount"
+        android:text="@string/convert" />
+
+    <Button
+        android:id="@+id/save_favourites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date"
+        android:text="@string/save_favourites" />
+
+    <ListView
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:id="@+id/theList"
+        android:layout_below="@id/save_favourites" />
+
+    <TextView
+        android:id="@+id/after_conversion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/run_conversion" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/after_conversion" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="invisible" />
+
+    <FrameLayout
+        android:id="@+id/fragmentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/theList"
+        android:layout_below="@id/save_favourites"/>
+
+</RelativeLayout>
