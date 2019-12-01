@@ -1,23 +1,18 @@
 package com.example.androidlabs;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -37,15 +32,35 @@ import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import static android.view.View.GONE;
 import static android.widget.Toast.LENGTH_SHORT;
 
+/**
+ * The main activity of news headlines
+ * @author Kaikai Mao
+ * @since 11/25/2019
+ */
 public class NewsHeadlines extends AppCompatActivity {
+    /**
+     * myListAdapter
+     */
     private MyListAdapter myListAdapater;
+    /**
+     * ArrayList to add item to listview
+     */
     private ArrayList<News_item> newsList;
+    /**
+     * progressbar
+     */
     private ProgressBar progressBar;
+    /**
+     * URL for internet connection
+     */
     private String URL;
 
+    /**
+     * main method of NewsHeadlines
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +99,7 @@ public class NewsHeadlines extends AppCompatActivity {
         });
 
         Button favorList = findViewById(R.id.go_to_favorite);
-        favorList.setOnClickListener(v->{
+        favorList.setOnClickListener(favorites->{
             Intent newIntent = new Intent(NewsHeadlines.this, News_favouriteList.class);
             startActivity(newIntent);
         });
@@ -117,14 +132,22 @@ public class NewsHeadlines extends AppCompatActivity {
     }
 
 
-
-
+    /**
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.news_menu, menu);
         return true;
     }
 
+    /**
+     *
+     * @param menuItem
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
@@ -141,6 +164,9 @@ public class NewsHeadlines extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * instruction of the app, and version number , author
+     */
     public void helpDialog()
     {
         View middle = getLayoutInflater().inflate(R.layout.activity_news_help_dialog_box, null);
@@ -161,8 +187,15 @@ public class NewsHeadlines extends AppCompatActivity {
         builder.create().show();
     }
 
+    /**
+     * Internet connection funcationality
+     */
     public class AsyncHttpTask extends AsyncTask<String,Integer,String>{
-
+        /**
+         *
+         * @param urls
+         * @return
+         */
         @Override
         protected String doInBackground(String... urls) {
             String result = "";
@@ -190,6 +223,10 @@ public class NewsHeadlines extends AppCompatActivity {
             return null;
         }
 
+        /**
+         *
+         * @param result
+         */
         @Override
         protected void onPostExecute(String result) {
 
@@ -204,11 +241,19 @@ public class NewsHeadlines extends AppCompatActivity {
 
         }
 
+        /**
+         *
+         * @param values
+         */
         protected void onProgressUpate(Integer... values){
             ProgressBar progressBar = findViewById(R.id.progress_bar);
             progressBar.setProgress(values[0]);
         }
 
+        /**
+         *
+         * @param result
+         */
         private void getJSONObject(String result) {
             try {
                 JSONObject response = new JSONObject(result);
@@ -216,11 +261,7 @@ public class NewsHeadlines extends AppCompatActivity {
                 News_item item;
                 Float progress;
                 for (int i = 0; i < posts.length(); i++) {
-                    /**
-                     * for every article found
-                     * extract desired information
-                     * create new article object
-                     */
+
                     JSONObject post = posts.optJSONObject(i);
                     String title = post.optString("title");
                     String image = post.optString("urlToImage");
@@ -231,14 +272,9 @@ public class NewsHeadlines extends AppCompatActivity {
                     item.setNews_url(image);
                     item.setNews_url(url);
                     item.setNews_description(description);
-                    /**
-                     * add new article object to arrayList
-                     */
+
                     newsList.add(item);
 
-                    /**
-                     * show progress as a total of articles loaded out of total articles received
-                     */
                     progress = ((i + 1) * 100f) / posts.length();
                     Log.d("load percent :", progress.toString());
                     publishProgress(progress.intValue());

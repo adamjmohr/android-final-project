@@ -3,8 +3,6 @@ package com.example.androidlabs;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,12 +15,12 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+
 import com.squareup.picasso.Picasso;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
-
+/**
+ * functionality about the fragment layout
+ */
 public class News_DetailedFragment extends Fragment {
     private boolean isTablet;
     News_DatabaseOpenHelper dbOpener;
@@ -102,7 +100,7 @@ public class News_DetailedFragment extends Fragment {
             newRowValues.put(News_DatabaseOpenHelper.COL_IMAGEURL, item.getNews_imageUrl());
             long newId = db.insert(News_DatabaseOpenHelper.TABLE_NAME, null, newRowValues);
             AlertDialog.Builder builder = new AlertDialog.Builder(News_DetailedFragment.super.getActivity());
-            AlertDialog dialog = builder.setMessage("Successfully Saved News to Favourites!")
+            AlertDialog dialog = builder.setMessage("added News to Favourites!")
                     .setPositiveButton("OK", (d, w) -> {  /* nothing */})
                     .create();
             dialog.show();

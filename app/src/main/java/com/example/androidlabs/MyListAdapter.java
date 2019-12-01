@@ -12,6 +12,10 @@ import java.util.ArrayList;
 
 import static android.view.View.GONE;
 
+/**
+ * MyListAdapter is a subclass of BaseAdapter
+ * overrides all the methods of BaseAdapter
+ */
 public class MyListAdapter extends BaseAdapter {
     private ArrayList<News_item> newsItems;
     private Context context;
