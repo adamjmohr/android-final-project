@@ -3,6 +3,7 @@
     package="com.example.androidlabs">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -25,9 +26,14 @@
         <activity android:name=".CarSearchDetailFragment" />
         <activity android:name=".CarEmptyActivity" />
         <activity android:name=".NewsHeadlines" />
-        <activity android:name=".RecipeSearch" />
+        <activity android:name=".Recipe.RecipeSearch" />
         <activity android:name=".currency.CurrencyConverter" />
         <activity android:name=".currency.EmptyActivity" />
+        <activity android:name=".Recipe.RecipeAsync" />
+        <activity android:name=".Recipe.RecipeListFragment" />
+        <activity android:name=".Recipe.RecipeEmptyActivity" />
+        <activity android:name=".Recipe.RecipeDetailFragment" />
+        <activity android:name=".Recipe.RecipeMain"/>
     </application>
 
 </manifest>

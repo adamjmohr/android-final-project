@@ -1,23 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+    <include
+        layout="@layout/recipe_toolbar"
+        android:id="@+id/toolbar" />
+
     <ListView
+        android:layout_marginTop="?attr/actionBarSize"
         android:id="@+id/recipeListView"
         android:tag="@string/recipeSearchEditText"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_above="@id/recipeOptionsContainer">
+    </ListView>
+
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
-    </ListView>
+        android:layout_above="@id/recipeOptionsContainer"
+        android:layout_toEndOf="@+id/recipeListView"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/recipeFragmentLocation"
+        android:background="@color/colorAccent"></FrameLayout>
 
     <LinearLayout
         android:id="@+id/recipeOptionsContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
         android:orientation="vertical"
         android:layout_weight="0">
 
@@ -26,7 +43,7 @@
             android:id="@+id/recipeSearchProgressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="50dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,4 +66,4 @@
 
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

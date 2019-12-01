@@ -59,7 +59,7 @@ with currency conversion. All currencies supported are listed below. Search for 
     <string name="go">Go</string>
 
     <!-- This is for Recipe Values. Thanks! DNT! -->
-    
+
     <string name="recipeSearchButtonText">Search</string>
     <string name="recipeSearchEditText">What are you looking for?</string>
     <string name="recipeFragmentUrlText">Publisher Url: </string>
@@ -67,7 +67,6 @@ with currency conversion. All currencies supported are listed below. Search for 
 
 
     <!-- This is the end of Recipe Values. Thanks! DNT! -->
-
 
 
 </resources>
