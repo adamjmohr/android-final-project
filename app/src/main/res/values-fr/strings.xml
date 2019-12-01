@@ -2,4 +2,30 @@
     <string name="app_name">Android Final</string>
     <string name="hello_message">Bonjour!</string>
     <string name="ButtonText">Je suis un bouton</string>
+
+    <string name="author_name">Simon Mao</string>
+    <string name="instruction">
+        -Enter into the search field and click search button\n
+        -click on an item from the search result to view the specific search item\n
+        -click the go to favorite button to view a list of saved articles\n</string>
+    <string name="news_main_toast">Enjoy reading news!</string>
+    <string name = "gobacktomain">GO BACK TO MAIN</string>
+    <string name="news_search_hint">Enter a keyword like Trump</string>
+    <string name="NewsView">View article in web browser</string>
+    <string name="NewsSave">Add to Favorites</string>
+    <string name="Newsback">Go Back</string>
+    <string name="news">News</string>
+    <string name="NewsSearchButton">Search</string>
+    <string name="NewsGoToFavoritesButton">Go to Favorites</string>
+    <string name="NewsGoBackToMainButton">Go Back to Main</string>
+    <string name="NewsGoBackButton">Go Back</string>
+    <string name="help_menu_title_text">Help</string>
+    <string name="news_welcome">Welcome to News Search</string>
+    <string name="News_detail_page">News Details</string>
+    <string name="News_favorite_welcome">Your Favorite News</string>
+    <string name="News_delete">Delete</string>
+    <string name="News_delete_from_fav">Delete from favourite</string>
+    <string name="News_delete_confirm">Are you sure to delete?</string>
+    <string name="News_yes">Yes</string>
+    <string name="News_cancel">Cancel</string>
 </resources>
