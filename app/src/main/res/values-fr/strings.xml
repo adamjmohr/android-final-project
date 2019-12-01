@@ -1,31 +1,65 @@
 <resources>
+    <string-array name="currencies_array">
+        <item>CAD</item>
+        <item>HKD</item>
+        <item>ISK</item>
+        <item>PHP</item>
+        <item>DKK</item>
+        <item>HUF</item>
+        <item>CZK</item>
+        <item>AUD</item>
+        <item>RON</item>
+        <item>SEK</item>
+        <item>IDR</item>
+        <item>INR</item>
+        <item>BRL</item>
+        <item>RUB</item>
+        <item>HRK</item>
+        <item>JPY</item>
+        <item>THB</item>
+        <item>CHF</item>
+        <item>SGD</item>
+        <item>PLN</item>
+        <item>BGN</item>
+        <item>TRY</item>
+        <item>CNY</item>
+        <item>NOK</item>
+        <item>NZD</item>
+        <item>ZAR</item>
+        <item>USD</item>
+        <item>MXN</item>
+        <item>ILS</item>
+        <item>GBP</item>
+        <item>KRW</item>
+        <item>MYR</item>
+        <item>EUR</item>
+    </string-array>
+
     <string name="app_name">Android Final</string>
     <string name="hello_message">Bonjour!</string>
     <string name="ButtonText">Je suis un bouton</string>
+    <string name="currency_main">Obtenez les derniers taux de change
+avec conversion de devise. Toutes les devises prises en charge sont répertoriées ci-dessous. Recherchez une devise avec l’abréviation de code à 3 lettres. Exemple: CAD pour dollars canadiens.</string>
+    <string name="search_text">Rechercher des devises</string>
+    <string name="search_button">Chercher</string>
+    <string name="convert_button">Aller au convertisseur</string>
+    <string name="converter">Convertir en</string>
+    <string name="currency_amount">Montant</string>
+    <string name="currency_from">De</string>
+    <string name="currency_to">À</string>
+    <string name="save_favourites">Enregistrer dans les favoris</string>
+    <string name="convert">Convertir</string>
 
-    <string name="author_name">Simon Mao</string>
-    <string name="instruction">
-        -Enter into the search field and click search button\n
-        -click on an item from the search result to view the specific search item\n
-        -click the go to favorite button to view a list of saved articles\n</string>
-    <string name="news_main_toast">Enjoy reading news!</string>
-    <string name = "gobacktomain">GO BACK TO MAIN</string>
-    <string name="news_search_hint">Enter a keyword like Trump</string>
-    <string name="NewsView">View article in web browser</string>
-    <string name="NewsSave">Add to Favorites</string>
-    <string name="Newsback">Go Back</string>
-    <string name="news">News</string>
-    <string name="NewsSearchButton">Search</string>
-    <string name="NewsGoToFavoritesButton">Go to Favorites</string>
-    <string name="NewsGoBackToMainButton">Go Back to Main</string>
-    <string name="NewsGoBackButton">Go Back</string>
-    <string name="help_menu_title_text">Help</string>
-    <string name="news_welcome">Welcome to News Search</string>
-    <string name="News_detail_page">News Details</string>
-    <string name="News_favorite_welcome">Your Favorite News</string>
-    <string name="News_delete">Delete</string>
-    <string name="News_delete_from_fav">Delete from favourite</string>
-    <string name="News_delete_confirm">Are you sure to delete?</string>
-    <string name="News_yes">Yes</string>
-    <string name="News_cancel">Cancel</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="favorite">Préféré</string>
+    <string name="help">Aidez</string>
+    <string name="carAuthor">Auteur: Bruce Tovee</string>
+    <string name="carVersion">Numéro de Version:1.0</string>
+    <string name="addFavorite">Ajouter aux Favoris</string>
+    <string name="go">Aller</string>
+    <string name="back">Retour</string>
+    <string name="removeFav">Supprimer le Favorie</string>
+    <string name="carInstructions">Instructions: 1) Entrez Latitude et Longitude / 2) Cliquez sur le bouton de recherche / 3) Appuyez sur l\'élément pour obtenir plus d\'informations, la navigation et l\'ajout aux favoris / Le bouton Accueil permet de revenir à l\'écran d\'accueil / Le cœur passe à la page des favoris</string>
+
 </resources>
