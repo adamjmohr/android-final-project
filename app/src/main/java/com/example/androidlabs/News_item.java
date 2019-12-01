@@ -1,13 +1,17 @@
 package com.example.androidlabs;
 
 
+import java.io.Serializable;
 
-public class News_item {
+public class News_item implements Serializable {
     private long news_id;
     private String news_title;
     private String news_description;
     private String news_url;
     private String news_imageUrl;
+
+    public News_item() {
+    }
 
     public News_item(long news_id, String news_title, String news_description, String news_url, String news_imageUrl) {
         this.news_id = news_id;

@@ -58,13 +58,6 @@
         android:layout_above="@id/goback"
         android:text="@string/NewsSave"/>
 
-    <!--Button
-        android:id="@+id/delete_from_favourites_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/goback"
-        android:text="@string/News_delete_from_fav"/-->
-
 
     <Button
         android:id="@+id/goback"

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +24,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,6 +38,7 @@ import java.util.ArrayList;
 import javax.net.ssl.HttpsURLConnection;
 
 import static android.view.View.GONE;
+import static android.widget.Toast.LENGTH_SHORT;
 
 public class NewsHeadlines extends AppCompatActivity {
     private MyListAdapater myListAdapater;
@@ -70,8 +78,34 @@ public class NewsHeadlines extends AppCompatActivity {
             editor.commit();
 
             URL = "https://newsapi.org/v2/everything?apiKey=09224c0a58c8423e8059115b529cbadf&q=" + searchText.getText().toString() ;
+            new AsyncHttpTask().execute(URL);
 
+            myListAdapater.notifyDataSetChanged();
         });
+
+        newsListView.setOnItemClickListener(((parent, view, position, id) -> {
+            News_item item = (News_item)parent.getItemAtPosition(position);
+            Bundle dataToPass = new Bundle();
+            dataToPass.putSerializable("Article",item);
+
+            if (isTablet) {
+                News_DetailedFragment dFragment = new News_DetailedFragment(); //add a DetailFragment
+                dFragment.setArguments(dataToPass); //pass it a bundle for information
+                dFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
+                        .addToBackStack("AnyName") //make the back button undo the transaction
+                        .commit(); //actually load the fragment.
+            } else //isPhone
+            {
+                Intent nextActivity = new Intent(NewsHeadlines.this, News_EmptyActivity.class);
+                nextActivity.putExtras(dataToPass); //send data to next activity
+                startActivity(nextActivity); //make the transition
+            }
+
+        }));
 
 
     }
@@ -133,8 +167,13 @@ public class NewsHeadlines extends AppCompatActivity {
                 urlConnection = (HttpsURLConnection) url.openConnection();
 
                 if (result != null) {
-                    String response = streamToString(urlConnection.getInputStream());
-                    parseResult(response);
+
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    String line= null;
+                    while((line = bufferedReader.readLine())!=null){
+                        result += line;
+                    }
+                    getJSONObject(result);
                     return result;
                 }
             } catch (MalformedURLException e) {
@@ -145,9 +184,66 @@ public class NewsHeadlines extends AppCompatActivity {
             return null;
         }
 
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result != null) {
+                myListAdapater.notifyDataSetChanged();
+                Toast.makeText(NewsHeadlines.this, "Data successfully Loaded", LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+
+            } else {
+                Toast.makeText(NewsHeadlines.this, "Failed to load data!", LENGTH_SHORT).show();
+            }
+
+        }
+
         protected void onProgressUpate(Integer... values){
             ProgressBar progressBar = findViewById(R.id.progress_bar);
             progressBar.setProgress(values[0]);
+        }
+
+        private void getJSONObject(String result) {
+            try {
+                JSONObject response = new JSONObject(result);
+                JSONArray posts = response.optJSONArray("articles");
+                News_item item;
+                Float progress;
+                for (int i = 0; i < posts.length(); i++) {
+                    /**
+                     * for every article found
+                     * extract desired information
+                     * create new article object
+                     */
+                    JSONObject post = posts.optJSONObject(i);
+                    String title = post.optString("title");
+                    String image = post.optString("urlToImage");
+                    String description = post.optString("description");
+                    String url = post.optString("url");
+                    item = new News_item();
+                    item.setNews_title(title);
+                    item.setNews_url(image);
+                    item.setNews_url(url);
+                    item.setNews_description(description);
+                    /**
+                     * add new article object to arrayList
+                     */
+                    newsList.add(item);
+
+                    /**
+                     * show progress as a total of articles loaded out of total articles received
+                     */
+                    progress = ((i + 1) * 100f) / posts.length();
+                    Log.d("load percent :", progress.toString());
+                    publishProgress(progress.intValue());
+
+                }
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
