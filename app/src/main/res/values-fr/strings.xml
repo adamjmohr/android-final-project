@@ -11,7 +11,12 @@
     <string name="NewsSearchButton">Chercher</string>
     <string name="NewsGoToFavoritesButton">Liste de nouvelles préférées</string>
     <string name="author_name">Simon Mao</string>
+    <string name="instruction">
+        1. Enter a keyword and click search button \n
+        2. Click on a search result to show the details, such as title, description and image \n
+        3. Read from a saved article list \n
 
+    </string>
     <string name="gobacktomain">Retourner</string>
     <string name="help_menu_title_text">Aidez-moi</string>
 </resources>

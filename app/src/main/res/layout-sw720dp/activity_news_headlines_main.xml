@@ -13,25 +13,25 @@
 
         />
     <ImageView
-        android:layout_width="450dp"
-        android:layout_height="wrap_content"
+        android:layout_width="550dp"
+        android:layout_height="50dp"
         android:id="@+id/news_welcome_banner"
-        android:src="@drawable/fake_news_banner_redo"
+        android:src="@drawable/fake_news"
         android:layout_below="@+id/news_headlines_toolbar"/>
     <EditText
         android:id="@+id/search_editText"
-        android:layout_width="450dp"
+        android:layout_width="550dp"
         android:layout_height="wrap_content"
         android:hint="@string/news_search_hint"
         android:layout_below="@+id/news_welcome_banner"/>
     <Button
-        android:layout_width="450dp"
+        android:layout_width="550dp"
         android:layout_height="wrap_content"
         android:id="@+id/searchbutton"
         android:layout_below="@+id/search_editText"
         android:text="@string/NewsSearchButton"/>
     <Button
-        android:layout_width="450dp"
+        android:layout_width="550dp"
         android:layout_height="wrap_content"
         android:id="@+id/go_to_favorite"
         android:layout_below="@+id/searchbutton"
@@ -40,13 +40,13 @@
         android:id="@+id/progress_bar"
         android:layout_below="@id/go_to_favorite"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="450dp"
+        android:layout_width="550dp"
         android:layout_height="wrap_content"
         android:visibility="invisible" />
 
     <ScrollView
         android:id="@+id/news_list_scroll_view"
-        android:layout_width="450dp"
+        android:layout_width="550dp"
         android:layout_height="match_parent"
         android:layout_below="@id/progress_bar"
         android:fillViewport="true">

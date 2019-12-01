@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -18,6 +19,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.ceylonlabs.imageviewpopup.ImagePopup;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -86,7 +90,12 @@ public class NewsHeadlines extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("news",MODE_PRIVATE);
         searchText.setText(prefs.getString("search",""));
 
-
+        ImageView imageView = (ImageView) findViewById(R.id.news_welcome_banner);
+        ImagePopup imagePopup = new ImagePopup(this);
+        imagePopup.initiatePopup(imageView.getDrawable());
+        imageView.setOnClickListener(v -> {
+                imagePopup.viewPopup();
+        });
         searchBtn.setOnClickListener(v->{
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("search", searchText.getText().toString());
@@ -153,8 +162,10 @@ public class NewsHeadlines extends AppCompatActivity {
         switch (menuItem.getItemId()) {
 
             case R.id.gobacktomainActivity:
-                Intent intent = new Intent(NewsHeadlines.this,MainActivity.class);
-                startActivity(intent);
+                Toolbar toolbar = findViewById(R.id.news_headlines_toolbar);
+                Snackbar.make(toolbar,"Go back to front page?",Snackbar.LENGTH_LONG).setAction("Yes", e->finish()).show();
+
+//                startActivity(intent);
                 break;
 
             case R.id.overflow_help:

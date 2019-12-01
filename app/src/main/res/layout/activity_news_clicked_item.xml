@@ -21,6 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/news_item_title"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="20dp"
+
             />
 
         <TextView
@@ -28,13 +31,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/news_title"
+            android:textSize="14sp"
+            android:textFontWeight="@android:integer/config_longAnimTime"
+            android:textColor="@android:color/holo_red_dark"
             />
 
         <TextView
             android:id = "@+id/url_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/news_description" />
+            android:layout_below="@id/news_description"
+            android:textColor="@android:color/holo_purple"/>
 
         <ImageView
             android:id="@+id/details_image"
