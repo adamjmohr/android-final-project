@@ -74,24 +74,19 @@ avec conversion de devise. Toutes les devises prises en charge sont répertorié
     <string name="News_favorite_welcome">Vos nouvelles préférées</string>
     <string name="NewsGoBackToMainButton">Retourner au principal</string>
     <string name="news_main_toast">Bonne lecture News!</string>
-    <string name="NewsView">Aller à la webview</string>
-    <string name="NewsSave">Enregistrer dans la liste des favoris</string>
+    <string name="NewsView">webview</string>
+    <string name="NewsSave">Enregistrer</string>
     <string name="Newsback">Retourner</string>
     <string name="News_item_page">Article de nouvelles</string>
     <string name="news_search_hint">Tapez un mot clé ici</string>
     <string name="NewsSearchButton">Chercher</string>
     <string name="NewsGoToFavoritesButton">Liste de nouvelles préférées</string>
     <string name="author_name">Simon Mao</string>
-    <string name="instruction">
-        1. Entrez un mot clé et cliquez sur le bouton de recherche \ n
-        2. Cliquez sur un résultat de recherche pour afficher les détails, tels que le titre, la description et l\'image \ n
-        3. Lire à partir d’une liste d’articles sauvegardée \ n
 
 
-    </string>
     <string name="gobacktomain">Retourner</string>
-    <string name="help_menu_title_text">Aidez-moi</string>
-
+    <string name="instruction">Reportez-vous à la version anglaise</string>
+    <string name="help_menu_title_text">Help</string>
     <string name="favorlist_dialog_msg">Voulez-vous supprimer lélément sélectionné ..?</string>
 
     <string name="favorlist_dialog_title">Êtes-vous sûr..</string>

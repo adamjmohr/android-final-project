@@ -12,18 +12,35 @@
         android:layout_height="wrap_content"
 
         />
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/news_welcome_banner"
-        android:src="@drawable/fake_news"
-        android:layout_below="@+id/news_headlines_toolbar"/>
+        android:id="@+id/text_image_layout"
+        android:layout_below="@+id/news_headlines_toolbar"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/TextnextTOimage"
+            android:textSize="20dp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textStyle="bold"
+            android:text="Our Slogon ->>>>>"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/news_welcome_banner"
+            android:src="@drawable/fake_news"
+            />
+
+    </LinearLayout>
+
     <EditText
         android:id="@+id/search_editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/news_search_hint"
-        android:layout_below="@+id/news_welcome_banner"/>
+        android:layout_below="@+id/text_image_layout"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
