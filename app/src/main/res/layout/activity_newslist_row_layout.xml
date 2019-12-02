@@ -9,9 +9,15 @@
         android:id="@+id/row_title"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="title"
+
+        android:paddingBottom="10dp"
+        android:textStyle="bold"
+
+
+
         android:layout_alignParentLeft="true"
           />
+
 
 
 

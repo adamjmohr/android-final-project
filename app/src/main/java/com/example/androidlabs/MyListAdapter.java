@@ -51,9 +51,10 @@ public class MyListAdapter extends BaseAdapter {
 
         TextView itemText = thisRow.findViewById(R.id.row_title);
         News_item item = newsItems.get(position);
-
+        long id = item.getNews_id();
+        String news_id = Long.toString(id);
         if(!item.getNews_title().isEmpty())
-            itemText.setText(Html.fromHtml(item.getNews_title()));
+            itemText.setText("Title:  " + Html.fromHtml(item.getNews_title()));
         else
             itemText.setVisibility(GONE);
 
