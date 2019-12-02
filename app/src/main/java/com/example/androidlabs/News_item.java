@@ -3,6 +3,7 @@ package com.example.androidlabs;
 import java.io.Serializable;
 /**
  * this class is the object of the news item
+ * it implements Serializable which allows to pass object data back and forth
  *  @author Kaikai Mao
  *  @since 11/25/2019
  */
