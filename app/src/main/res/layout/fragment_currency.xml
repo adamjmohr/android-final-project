@@ -56,5 +56,5 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/idText"
         android:layout_marginTop="30dp"
-        android:text="@string/currency_delete" />7
+        android:text="@string/currency_delete" />
 </RelativeLayout>
