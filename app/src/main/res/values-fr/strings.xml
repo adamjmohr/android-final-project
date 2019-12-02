@@ -62,4 +62,23 @@ avec conversion de devise. Toutes les devises prises en charge sont répertorié
     <string name="removeFav">Supprimer le Favorie</string>
     <string name="carInstructions">Instructions: 1) Entrez Latitude et Longitude / 2) Cliquez sur le bouton de recherche / 3) Appuyez sur l\'élément pour obtenir plus d\'informations, la navigation et l\'ajout aux favoris / Le bouton Accueil permet de revenir à l\'écran d\'accueil / Le cœur passe à la page des favoris</string>
 
+    <string name="News_favorite_welcome">Vos nouvelles préférées</string>
+    <string name="NewsGoBackToMainButton">Retourner au principal</string>
+    <string name="news_main_toast">Bonne lecture News!</string>
+    <string name="NewsView">Aller à la webview</string>
+    <string name="NewsSave">Enregistrer dans la liste des favoris</string>
+    <string name="Newsback">Retourner</string>
+    <string name="News_item_page">Article de nouvelles</string>
+    <string name="news_search_hint">Tapez un mot clé ici</string>
+    <string name="NewsSearchButton">Chercher</string>
+    <string name="NewsGoToFavoritesButton">Liste de nouvelles préférées</string>
+    <string name="author_name">Simon Mao</string>
+    <string name="instruction">
+        1. Enter a keyword and click search button \n
+        2. Click on a search result to show the details, such as title, description and image \n
+        3. Read from a saved article list \n
+
+    </string>
+    <string name="gobacktomain">Retourner</string>
+    <string name="help_menu_title_text">Aidez-moi</string>
 </resources>

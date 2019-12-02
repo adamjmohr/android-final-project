@@ -31,6 +31,8 @@
         <activity android:name=".RecipeSearch" />
         <activity android:name=".currency.CurrencyConverter" />
         <activity android:name=".currency.CurrencyEmptyActivity" />
+        <activity android:name=".News_favouriteList"/>
+        <activity android:name=".News_EmptyActivity"/>
     </application>
 
 </manifest>
