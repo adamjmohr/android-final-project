@@ -50,7 +50,7 @@ avec conversion de devise. Toutes les devises prises en charge sont répertorié
     <string name="convert_button">Aller au convertisseur</string>
     <string name="converter">Convertir en</string>
     <string name="currency_converted">Converti en: </string>
-    <string name="currency_base">Devise de base:  </string>
+    <string name="currency_base">Devise de base: </string>
     <string name="currency_id">ID de base de: </string>
     <string name="currency_amount">Montant</string>
     <string name="currency_from">De</string>
