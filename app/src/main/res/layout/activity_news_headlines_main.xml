@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewsHeadlines">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/news_headlines_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/news_welcome_banner"
+        android:src="@drawable/fake_news"
+        android:layout_below="@+id/news_headlines_toolbar"/>
+    <EditText
+        android:id="@+id/search_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/news_search_hint"
+        android:layout_below="@+id/news_welcome_banner"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchbutton"
+        android:layout_below="@+id/search_editText"
+        android:text="@string/NewsSearchButton"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/go_to_favorite"
+        android:layout_below="@+id/searchbutton"
+        android:text="@string/NewsGoToFavoritesButton"/>
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_below="@id/go_to_favorite"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
+
+    <ScrollView
+        android:id="@+id/news_list_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/progress_bar"
+        android:fillViewport="true">
+
+        <ListView
+            android:id="@+id/articlesListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+        </ListView>
+    </ScrollView>
+
+
+
+
+</RelativeLayout>
