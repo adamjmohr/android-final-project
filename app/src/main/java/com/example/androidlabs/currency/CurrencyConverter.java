@@ -190,7 +190,6 @@ public class CurrencyConverter extends AppCompatActivity {
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragmentLocation, cFragment) //Add the fragment in FrameLayout
-                        .addToBackStack("AnyName") //make the back button undo the transaction
                         .commit(); //actually load the fragment.
             } else {//isPhone
                 Intent nextActivity = new Intent(CurrencyConverter.this, CurrencyEmptyActivity.class);
