@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.androidlabs.Recipe.RecipeMain;
 import com.example.androidlabs.currency.CurrencyMain;
 
 public class MainActivity extends AppCompatActivity {
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.app4:
-                Intent recipes = new Intent(MainActivity.this, RecipeSearch.class);
+                Intent recipes = new Intent(MainActivity.this, RecipeMain.class);
                 startActivity(recipes);
                 break;
 

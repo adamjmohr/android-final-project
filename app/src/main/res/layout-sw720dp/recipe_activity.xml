@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include
+        layout="@layout/recipe_toolbar"
+        android:id="@+id/recipeToolbar" />
+
+    <ListView
+        android:id="@+id/recipeListView"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_above="@id/recipeOptionsContainer"
+        android:layout_marginTop="?attr/actionBarSize"></ListView>
+
+
+    <FrameLayout
+        android:id="@+id/recipeFragmentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/recipeOptionsContainer"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_toEndOf="@+id/recipeListView"
+        android:background="#4F0F3F72"></FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/recipeOptionsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_weight="0">
+
+
+        <ProgressBar
+            android:id="@+id/recipeSearchProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:max="100"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/recipeSearchEditText" />
+
+            <Button
+                android:id="@+id/recipeSearchButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/recipeSearchButtonText" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

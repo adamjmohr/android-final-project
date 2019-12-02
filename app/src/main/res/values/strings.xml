@@ -71,6 +71,28 @@ with currency conversion. All currencies supported are listed below. Search for 
     <string name="removeFav">Remove Favorite</string>
     <string name="carInstructions">Instructions: 1)Enter Latitude and Longitude/2)Click search button/3)Press item for more info, navigation and adding to favorites/Home button returns to home screen/Heart goes to favorite page</string>
 
+    <!-- This is for Recipe Values. Thanks! DNT! -->
+
+    <string name="recipeSearchButtonText">Search</string>
+    <string name="recipeSearchEditText">What are you looking for?</string>
+    <string name="Publisher">Publisher :</string>
+    <string name="Title">Title :</string>
+    <string name="recipeFragmentImageDescription">This Recipe\'s Image</string>
+    <string name="applicationName">Android Final </string>
+    <string name="recipeMainButton">Search Recipes!</string>
+    <string name="recipeSearchLasagna">You wrote Lasagna right?</string>
+    <string name="recipeSearchChicken">I like Chicken too!</string>
+    <string name="recipeVersion">Ver 0.1 beta</string>
+    <string name="gotcha">Gotcha</string>
+    <string name="lastchoicelasagan">Your last choice was to look for lasagna recipes.</string>
+    <string name="lastchoicechicken">Your last choice was to look for chicken recipes.</string>
+    <string name="recipeapp">Recipe App</string>
+    <string name="gotorecipe">Go To Recipe</string>
+    <string name="information">Activity Information</string>
+    <string name="recipeMainHelp">Press Gotcha, then click button to start Searching! Or click the star on the toolbar to go directly to your Favorites</string>
+    <string name="recipeSearchHelp">Toggle Results/Favorites list on toolbar. You may only enter search when looking at the Results List. Also the droids only let you search Lasagna and Chicken, go figure.</string>
+
+    <!-- This is the end of Recipe Values. Thanks! DNT! -->
 
     <string name="News_favorite_welcome">Your Favourite News</string>
     <string name="NewsGoBackToMainButton">Back to News Search</string>

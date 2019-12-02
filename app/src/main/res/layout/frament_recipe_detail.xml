@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4F0F3F72">
+
+    <ImageView
+        android:id="@+id/imageRecipe"
+        android:layout_width="315dp"
+        android:layout_height="263dp"
+        android:layout_margin="50dp"
+        android:background="#A8A8A8" />
+
+    <ImageButton
+        android:id="@+id/faveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"/>
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="289dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        android:autoLink="all"
+        android:textSize="18dp"></TextView>
+
+    <TextView
+        android:id="@+id/textValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:layout_margin="18dp" />
+
+    <TextView
+        android:id="@+id/textValue2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:layout_margin="18dp" />
+
+</LinearLayout>
