@@ -263,7 +263,7 @@ public class NewsHeadlines extends AppCompatActivity {
 
         /**
          *
-         * @param result
+         * @param result json objects extracted from the source
          */
         private void getJSONObject(String result) {
             try {
