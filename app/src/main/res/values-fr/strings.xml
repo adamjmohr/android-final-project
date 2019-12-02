@@ -84,7 +84,7 @@ avec conversion de devise. Toutes les devises prises en charge sont répertorié
     <string name="author_name">Simon Mao</string>
     <string name="instruction">
         1. Entrez un mot clé et cliquez sur le bouton de recherche \ n
-        2. Cliquez sur un résultat de recherche pour afficher les détails, tels que le titre, la description et l'image \ n
+        2. Cliquez sur un résultat de recherche pour afficher les détails, tels que le titre, la description et l\'image \ n
         3. Lire à partir d’une liste d’articles sauvegardée \ n
 
 
