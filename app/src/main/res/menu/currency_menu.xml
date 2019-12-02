@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/currencyFavourite"
-        android:icon="@drawable/heart_outline"
+        android:id="@+id/currencyToHome"
+        android:icon="@drawable/home"
         android:title="@string/favorite"
         app:showAsAction="ifRoom" />
 

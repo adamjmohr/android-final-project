@@ -46,22 +46,38 @@
         android:text="@string/save_favourites" />
 
     <ListView
+        android:id="@+id/theList"
         android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:id="@+id/theList"
         android:layout_below="@id/save_favourites" />
 
     <TextView
         android:id="@+id/after_conversion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/run_conversion" />
+        android:layout_below="@id/run_conversion"
+        android:text="@string/currency_rate" />
+
+    <TextView
+        android:id="@+id/conversion_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/run_conversion"
+        android:layout_toEndOf="@id/after_conversion" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/after_conversion" />
+        android:layout_below="@id/after_conversion"
+        android:text="@string/currency_date" />
+
+    <TextView
+        android:id="@+id/date_query"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/conversion_rate"
+        android:layout_toEndOf="@id/date" />
 
     <ProgressBar
         android:id="@+id/progress"
@@ -76,7 +92,7 @@
         android:id="@+id/fragmentLocation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toEndOf="@id/theList"
-        android:layout_below="@id/save_favourites"/>
+        android:layout_below="@id/save_favourites"
+        android:layout_toEndOf="@id/theList" />
 
 </RelativeLayout>

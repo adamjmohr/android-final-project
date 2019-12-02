@@ -13,10 +13,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.androidlabs.MainActivity;
 import com.example.androidlabs.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +45,10 @@ public class CurrencyMain extends AppCompatActivity {
      * All the queries supported by the API are fetched and stored here to be displayed to the user.
      */
     private ArrayList<CurrencyObject> currencies;
-
+    /**
+     * Toolbar displayed at top of screen.
+     */
+    private Toolbar toolbar;
 
     /**
      * Initializes widgets on the screen.
@@ -55,7 +61,7 @@ public class CurrencyMain extends AppCompatActivity {
         setContentView(R.layout.currency_main);
         currencies = new ArrayList<>();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         CurrencyQuery query = new CurrencyQuery();
@@ -92,13 +98,22 @@ public class CurrencyMain extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             //what to do when the menu item is selected:
-            case R.id.currencyFavourite:
-                Intent currencyFavourites = new Intent(CurrencyMain.this, CurrencyConverter.class);
-                startActivity(currencyFavourites);
+            case R.id.currencyToHome:
+                Intent homePage = new Intent(CurrencyMain.this, MainActivity.class);
+                Snackbar.make(toolbar, "Go to Home Page?", Snackbar.LENGTH_LONG)
+                        .setAction("Confirm", e -> startActivity(homePage)).show();
                 break;
 
             case R.id.currencyHelp:
-                //Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                View help = getLayoutInflater().inflate(R.layout.currency_dialog, null);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder
+                        .setPositiveButton("Close", (dialog, id) -> {
+
+                        })
+                        .setView(help);
+                builder.create().show();
                 break;
         }
         return true;
