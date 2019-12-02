@@ -32,13 +32,12 @@
         <activity android:name=".Recipe.RecipeSearch"
             android:label="@string/recipeapp"/>
         <activity android:name=".currency.CurrencyConverter" />
-        <activity android:name=".currency.EmptyActivity" />
+
         <activity android:name=".Recipe.RecipeAsync" />
         <activity android:name=".Recipe.RecipeEmptyActivity"
             android:label="Recipe Search App"/>
         <activity android:name=".Recipe.RecipeDetailFragment" />
-        <activity android:name=".Recipe.RecipeMain"
-            android:label="Recipe Search App"/>
+        <activity android:name=".Recipe.RecipeMain" />
         <activity android:name=".currency.CurrencyEmptyActivity" />
         <activity android:name=".News_favouriteList"/>
         <activity android:name=".News_EmptyActivity"/>

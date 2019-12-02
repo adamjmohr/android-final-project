@@ -12,14 +12,14 @@
         android:title="App 2"
         android:icon="@drawable/electric_car_24" />
 
-    <item android:id="@+id/app4"
-        app:showAsAction="always"
-        android:title="App 4"
-        android:icon="@drawable/news_24" />
-
     <item android:id="@+id/app3"
         app:showAsAction="always"
         android:title="App 3"
+        android:icon="@drawable/news_24" />
+
+    <item android:id="@+id/app4"
+        app:showAsAction="always"
+        android:title="App 4"
         android:icon="@drawable/recipes_24" />
 
 </menu>
