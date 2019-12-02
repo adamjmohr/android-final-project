@@ -42,13 +42,22 @@
 with currency conversion. All currencies supported are listed below. Search for a currency with the 3 letter code abbreviation. Example: CAD for Canadian dollars.</string>
     <string name="search_text">Search Currencies</string>
     <string name="search_button">Search</string>
+    <string name="currency_api">API used: https://exchangeratesapi.io/</string>
+    <string name="currency_author">Author: Adam Mohr</string>
+    <string name="currency_delete">Delete</string>
+    <string name="currency_date">Date retrieved: </string>
+    <string name="currency_rate">Conversion Rate: </string>
     <string name="convert_button">Go to Converter</string>
     <string name="converter">Convert To</string>
+    <string name="currency_converted">Converted to: </string>
+    <string name="currency_base">Base Currency:  </string>
+    <string name="currency_id">Database ID: </string>
     <string name="currency_amount">Amount</string>
     <string name="currency_from">From</string>
     <string name="currency_to">To</string>
     <string name="save_favourites">Save to favourites</string>
     <string name="convert">Convert</string>
+    <string name="currency_instructions">Instructions: Enter amount, base currency, and target currency. Click convert to see the amount after converting it to target currency. Save to favourites for future.</string>
 
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>

@@ -28,6 +28,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.androidlabs.MainActivity;
 import com.example.androidlabs.R;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -67,6 +68,10 @@ public class CurrencyConverter extends AppCompatActivity {
      */
     private String duplicateFav = "Favourite already exists";
     /**
+     * Alert message for favourite created.
+     */
+    private String favCreated = "Favourite created";
+    /**
      * List of favourite currency conversions saved for later use by User.
      */
     private ArrayList<CurrencyObject> favourites;
@@ -74,7 +79,10 @@ public class CurrencyConverter extends AppCompatActivity {
      * Custom adapter for currency objects.
      */
     private CurrencyAdapter currencyAdapter;
-
+    /**
+     * Toolbar displayed at top of screen.
+     */
+    private Toolbar toolbar;
     /**
      * Base currency.
      */
@@ -136,38 +144,6 @@ public class CurrencyConverter extends AppCompatActivity {
         }
         results.close();
 
-        ListView theList = findViewById(R.id.theList);
-        currencyAdapter = new CurrencyAdapter();
-        theList.setAdapter(currencyAdapter);
-        theList.setOnItemClickListener((list, item, position, id) -> {
-            Bundle dataToPass = new Bundle();
-            dataToPass.putString(BASE_CURRENCY, currencyAdapter.getItem(position).getName());
-            dataToPass.putString(TARGET_CURRENCY, currencyAdapter.getItem(position).getFavourite());
-            dataToPass.putLong(ITEM_ID, currencyAdapter.getItemId(position));
-            dataToPass.putInt(ITEM_POSITION, position);
-
-            if (isTablet) {
-                CurrencyFragment cFragment = new CurrencyFragment(); //add a DetailFragment
-                cFragment.setArguments(dataToPass); //pass it a bundle for information
-                cFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragmentLocation, cFragment) //Add the fragment in FrameLayout
-                        .addToBackStack("AnyName") //make the back button undo the transaction
-                        .commit(); //actually load the fragment.
-            } else {//isPhone
-                Intent nextActivity = new Intent(CurrencyConverter.this, CurrencyEmptyActivity.class);
-                nextActivity.putExtras(dataToPass); //send data to next activity
-                startActivityForResult(nextActivity, EMPTY_ACTIVITY); //make the transition
-            }
-        });
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        EditText amount = findViewById(R.id.amount);
-        amount.setText(String.valueOf(amountToConvert));
-
         Spinner spinnerFrom = findViewById(R.id.currencies_spinner_from);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapterFrom = ArrayAdapter.createFromResource(this,
@@ -194,11 +170,49 @@ public class CurrencyConverter extends AppCompatActivity {
             spinnerTo.setSelection(spinnerPosition);
         }
 
+        ListView theList = findViewById(R.id.theList);
+        currencyAdapter = new CurrencyAdapter();
+        theList.setAdapter(currencyAdapter);
+        theList.setOnItemClickListener((list, item, position, id) -> {
+            spinnerFrom.setSelection(adapterFrom.getPosition(currencyAdapter.getItem(position).getName()));
+            spinnerTo.setSelection(adapterTo.getPosition(currencyAdapter.getItem(position).getFavourite()));
+
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString(BASE_CURRENCY, currencyAdapter.getItem(position).getName());
+            dataToPass.putString(TARGET_CURRENCY, currencyAdapter.getItem(position).getFavourite());
+            dataToPass.putLong(ITEM_ID, currencyAdapter.getItemId(position));
+            dataToPass.putInt(ITEM_POSITION, position);
+
+            if (isTablet) {
+                CurrencyFragment cFragment = new CurrencyFragment(); //add a DetailFragment
+                cFragment.setArguments(dataToPass); //pass it a bundle for information
+                cFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentLocation, cFragment) //Add the fragment in FrameLayout
+                        .addToBackStack("AnyName") //make the back button undo the transaction
+                        .commit(); //actually load the fragment.
+            } else {//isPhone
+                Intent nextActivity = new Intent(CurrencyConverter.this, CurrencyEmptyActivity.class);
+                nextActivity.putExtras(dataToPass); //send data to next activity
+                startActivityForResult(nextActivity, EMPTY_ACTIVITY); //make the transition
+            }
+        });
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        EditText amount = findViewById(R.id.amount);
+        amount.setText(String.valueOf(amountToConvert));
+
         Button runConversion = findViewById(R.id.run_conversion);
         runConversion.setOnClickListener(clk -> {
             amountToConvert = Double.parseDouble(amount.getText().toString());
             currencyFrom = spinnerFrom.getSelectedItem().toString();
             currencyTo = spinnerTo.getSelectedItem().toString();
+
+            ProgressBar progressBar = findViewById(R.id.progress);
+            progressBar.setVisibility(View.VISIBLE);
 
             CurrencyQuery query = new CurrencyQuery(currencyFrom, currencyTo, amountToConvert);
             query.execute();
@@ -207,12 +221,17 @@ public class CurrencyConverter extends AppCompatActivity {
 
         Button saveFavourite = findViewById(R.id.save_favourites);
         saveFavourite.setOnClickListener(clk -> {
-
-            Toast.makeText(this, duplicateFav, Toast.LENGTH_LONG).show();
-
             currencyFrom = spinnerFrom.getSelectedItem().toString();
             currencyTo = spinnerTo.getSelectedItem().toString();
 
+            for (CurrencyObject fav : favourites) {
+                if (fav.getName().equals(currencyFrom) && fav.getFavourite().equals(currencyTo)) {
+                    Toast.makeText(this, duplicateFav, Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+
+            Toast.makeText(this, favCreated, Toast.LENGTH_LONG).show();
             //add to the database and get the new ID
             ContentValues newRowValues = new ContentValues();
             //put string name in the MESSAGE column:
@@ -340,13 +359,14 @@ public class CurrencyConverter extends AppCompatActivity {
                 String result = sb.toString();
                 JSONObject jObject = new JSONObject(result);
                 rate = jObject.getJSONObject("rates").getDouble(targetCurrency);
+                publishProgress(25);
 
                 BigDecimal roundedRate = new BigDecimal(rate * amount).setScale(2, RoundingMode.HALF_UP);
                 rate = roundedRate.doubleValue();
-                publishProgress(25);
+                publishProgress(50);
 
                 baseCurrency = jObject.getString("base");
-                publishProgress(50);
+
 
                 date = jObject.getString("date");
                 publishProgress(75);
@@ -375,12 +395,11 @@ public class CurrencyConverter extends AppCompatActivity {
             ProgressBar progressBar = findViewById(R.id.progress);
             progressBar.setVisibility(View.INVISIBLE);
 
-            TextView afterConversion = findViewById(R.id.after_conversion);
-            afterConversion.setText(String.format("Conversion Rate: %s", rate));
+            TextView afterConversion = findViewById(R.id.conversion_rate);
+            afterConversion.setText(" " + rate);
 
-            TextView dateField = findViewById(R.id.date);
-            dateField.setText(String.format("Date Retrieved: %s", date));
-
+            TextView dateField = findViewById(R.id.date_query);
+            dateField.setText(String.format(" %s", date));
         }
 
         /**
@@ -420,13 +439,22 @@ public class CurrencyConverter extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             //what to do when the menu item is selected:
-            case R.id.currencyFavourite:
-                Intent currencyFavourites = new Intent(CurrencyConverter.this, CurrencyConverter.class);
-                startActivity(currencyFavourites);
+            case R.id.currencyToHome:
+                Intent homePage = new Intent(CurrencyConverter.this, MainActivity.class);
+                Snackbar.make(toolbar, "Go to Home Page?", Snackbar.LENGTH_LONG)
+                        .setAction("Confirm", e -> startActivity(homePage)).show();
                 break;
 
             case R.id.currencyHelp:
-                //Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                View help = getLayoutInflater().inflate(R.layout.currency_dialog, null);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder
+                        .setPositiveButton("Close", (dialog, id) -> {
+
+                        })
+                        .setView(help);
+                builder.create().show();
                 break;
         }
         return true;

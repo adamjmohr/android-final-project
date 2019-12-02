@@ -42,13 +42,22 @@
 avec conversion de devise. Toutes les devises prises en charge sont répertoriées ci-dessous. Recherchez une devise avec l’abréviation de code à 3 lettres. Exemple: CAD pour dollars canadiens.</string>
     <string name="search_text">Rechercher des devises</string>
     <string name="search_button">Chercher</string>
+    <string name="currency_api">API utilisée: https://exchangeratesapi.io/</string>
+    <string name="currency_author">Auteur: Adam Mohr</string>
+    <string name="currency_delete">Supprimer</string>
+    <string name="currency_date">Date de récupération: </string>
+    <string name="currency_rate">Taux de conversion: </string>
     <string name="convert_button">Aller au convertisseur</string>
     <string name="converter">Convertir en</string>
+    <string name="currency_converted">Converti en: </string>
+    <string name="currency_base">Devise de base: </string>
+    <string name="currency_id">ID de base de: </string>
     <string name="currency_amount">Montant</string>
     <string name="currency_from">De</string>
     <string name="currency_to">À</string>
     <string name="save_favourites">Enregistrer dans les favoris</string>
     <string name="convert">Convertir</string>
+    <string name="currency_instructions">Instructions: Entrez le montant, la devise de base et la devise cible. Cliquez sur Convertir pour voir le montant après l\'avoir converti dans la devise cible. Enregistrer dans les favoris pour l\'avenir.</string>
 
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
@@ -73,6 +82,7 @@ avec conversion de devise. Toutes les devises prises en charge sont répertorié
     <string name="NewsSearchButton">Chercher</string>
     <string name="NewsGoToFavoritesButton">Liste de nouvelles préférées</string>
     <string name="author_name">Simon Mao</string>
+
 
     <string name="gobacktomain">Retourner</string>
     <string name="instruction">Reportez-vous à la version anglaise</string>
