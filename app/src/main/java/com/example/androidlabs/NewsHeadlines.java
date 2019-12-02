@@ -15,27 +15,21 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.google.android.material.snackbar.Snackbar;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-
 import javax.net.ssl.HttpsURLConnection;
-
 import static android.widget.Toast.LENGTH_SHORT;
 
 /**
@@ -69,50 +63,51 @@ public class NewsHeadlines extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_headlines_main);
-
+        //toast message
         Toast.makeText(this, getString(R.string.news_main_toast), Toast.LENGTH_LONG).show();
         Toolbar toolbar = findViewById(R.id.news_headlines_toolbar);
         setSupportActionBar(toolbar);
-
+        //progressbar stuff
         progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.INVISIBLE);
+
         boolean isTablet = findViewById(R.id.fragmentLocation)!=null;
         newsList = new ArrayList<>();
-
+        //get ready the UI components in this activity
         EditText searchText = findViewById(R.id.search_editText);
         Button searchBtn = findViewById(R.id.searchbutton);
-
         ListView newsListView = findViewById(R.id.articlesListView);
+
         myListAdapater = new MyListAdapter(newsList,this);
         myListAdapater.notifyDataSetChanged();
         newsListView.setAdapter(myListAdapater);
-
+        //sharepreference stuff
         SharedPreferences prefs = getSharedPreferences("news",MODE_PRIVATE);
         searchText.setText(prefs.getString("search",""));
 
+        //extra funny popup trump photo mocking at the news as fake news, it doesnt stand for the developers, but just for fun
         ImageView imageView = (ImageView) findViewById(R.id.news_welcome_banner);
         ImagePopup imagePopup = new ImagePopup(this);
         imagePopup.initiatePopup(imageView.getDrawable());
         imageView.setOnClickListener(v -> {
                 imagePopup.viewPopup();
         });
+        //search button functionality
         searchBtn.setOnClickListener(v->{
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("search", searchText.getText().toString());
             editor.commit();
-
             URL = "https://newsapi.org/v2/everything?apiKey=09224c0a58c8423e8059115b529cbadf&q=" + searchText.getText().toString() ;
             new AsyncHttpTask().execute(URL);
-
             myListAdapater.notifyDataSetChanged();
         });
-
+        //favourite list button functionality
         Button favorList = findViewById(R.id.go_to_favorite);
         favorList.setOnClickListener(v->{
             Intent newIntent = new Intent(NewsHeadlines.this, News_favouriteList.class);
             startActivity(newIntent);
         });
-
+        //click on news list view, fragment stuff
         newsListView.setOnItemClickListener(((parent, view, position, id) -> {
             News_item item = (News_item)parent.getItemAtPosition(position);
             Bundle dataToPass = new Bundle();
@@ -134,12 +129,8 @@ public class NewsHeadlines extends AppCompatActivity {
                 nextActivity.putExtras(dataToPass); //send data to next activity
                 startActivity(nextActivity); //make the transition
             }
-
         }));
-
-
     }
-
 
     /**
      *
@@ -153,7 +144,7 @@ public class NewsHeadlines extends AppCompatActivity {
     }
 
     /**
-     *
+     * news headlines page toolbar menu
      * @param menuItem
      * @return
      */
@@ -164,8 +155,6 @@ public class NewsHeadlines extends AppCompatActivity {
             case R.id.gobacktomainActivity:
                 Toolbar toolbar = findViewById(R.id.news_headlines_toolbar);
                 Snackbar.make(toolbar,"Go back to front page?",Snackbar.LENGTH_LONG).setAction("Yes", e->finish()).show();
-
-//                startActivity(intent);
                 break;
 
             case R.id.overflow_help:
@@ -176,6 +165,7 @@ public class NewsHeadlines extends AppCompatActivity {
     }
 
     /**
+     * customized pop alert dialog window
      * instruction of the app, and version number , author
      */
     public void helpDialog()
@@ -203,7 +193,7 @@ public class NewsHeadlines extends AppCompatActivity {
      */
     public class AsyncHttpTask extends AsyncTask<String,Integer,String>{
         /**
-         *
+         * generate the url and pass it to the json object to extract the desired information
          * @param urls
          * @return
          */
@@ -230,36 +220,8 @@ public class NewsHeadlines extends AppCompatActivity {
             }
             return null;
         }
-
         /**
-         *
-         * @param result
-         */
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            if (result != null) {
-                myListAdapater.notifyDataSetChanged();
-                Toast.makeText(NewsHeadlines.this, "Valid search!!!", LENGTH_SHORT).show();
-                progressBar.setVisibility(View.GONE);
-
-            } else {
-                Toast.makeText(NewsHeadlines.this, "Invalid Search!!!Check network connection and try again", LENGTH_SHORT).show();
-            }
-
-        }
-
-        /**
-         *
-         * @param values
-         */
-        protected void onProgressUpate(Integer... values){
-            ProgressBar progressBar = findViewById(R.id.progress_bar);
-            progressBar.setProgress(values[0]);
-        }
-
-        /**
-         *
+         * this method gets all the details of each news item
          * @param result json objects extracted from the source
          */
         private void getJSONObject(String result) {
@@ -292,13 +254,41 @@ public class NewsHeadlines extends AppCompatActivity {
                     publishProgress(progress.intValue());
 
                 }
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
         }
+
+        /**
+         * Toast message indicating whether the search is valid or not
+         * @param result
+         */
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if (result != null) {
+                myListAdapater.notifyDataSetChanged();
+                Toast.makeText(NewsHeadlines.this, R.string.toastmsg_2, LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+
+            } else {
+                Toast.makeText(NewsHeadlines.this, R.string.toastmsg_3, LENGTH_SHORT).show();
+            }
+
+        }
+
+        /**
+         *
+         * @param values
+         */
+        protected void onProgressUpate(Integer... values){
+            ProgressBar progressBar = findViewById(R.id.progress_bar);
+            progressBar.setProgress(values[0]);
+        }
+
+
+
     }
 
 

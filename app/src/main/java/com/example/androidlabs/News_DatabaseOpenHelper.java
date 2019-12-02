@@ -6,8 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- *  * @author Kaikai Mao
- *  * @since 11/25/2019
+ * database opener from the inclassExamples2019F demos
+ *  @author Kaikai Mao
+ *  @since 11/25/2019
  */
 public class News_DatabaseOpenHelper extends SQLiteOpenHelper {
 

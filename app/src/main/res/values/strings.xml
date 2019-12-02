@@ -89,6 +89,12 @@ with currency conversion. All currencies supported are listed below. Search for 
         3. Read from a saved article list \n
 
     </string>
+    <string name="favorlist_dialog_msg">Do you want to delete the selected item..?</string>
+
+    <string name="favorlist_dialog_title">Are you sure..</string>
     <string name="gobacktomain">Go Back</string>
     <string name="help_menu_title_text">Help</string>
+    <string name="detailF_dialog_msg">added News to Favourites!</string>
+    <string name="toastmsg_2">Valid search!!!</string>
+    <string name="toastmsg_3">Invalid Search!!! \n\n Enter a key word and try again</string>
 </resources>

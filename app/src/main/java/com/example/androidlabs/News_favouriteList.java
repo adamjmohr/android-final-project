@@ -5,8 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.content.DialogInterface;
@@ -18,29 +16,44 @@ import java.util.ArrayList;
 
 /**
  * load the favouritelist and click on item will open up the link in webview
- *  * @author Kaikai Mao
- *  * @since 11/25/2019
+ *  @author Kaikai Mao
+ *  @since 11/25/2019
  */
 public class News_favouriteList extends AppCompatActivity {
-
+    /**
+     * the arraylist to store news items upon the user's selection
+     */
     private ArrayList<News_item> favouriteList;
+    /**
+     * the Listview to show the favourite list
+     */
     private ListView favourListView;
+    /**
+     * the adapter to insert items into the list view
+     */
     private MyListAdapter adapter;
+
+    /**
+     * onCreate method to launch the favourite list activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_news);
-
+        //invoke the goback button to newsheadlines page, once clicked, it goes back to the previous page
         Button gobackButton = findViewById(R.id.gobackToMainButton);
         gobackButton.setOnClickListener(v->{
             finish();
         });
 
+        //prepare the favourite list
          favouriteList = new ArrayList<>();
          favourListView = findViewById(R.id.favourites_list_view);
          adapter = new MyListAdapter(favouriteList,this);
         favourListView.setAdapter(adapter);
 
+        //load the favourite list from the database
         News_DatabaseOpenHelper dbopener = new News_DatabaseOpenHelper(this);
         SQLiteDatabase db = dbopener.getWritableDatabase();
 
@@ -61,8 +74,8 @@ public class News_favouriteList extends AppCompatActivity {
             String imageUrl = results.getString(imageUrlColumnIndex);
             long id = results.getLong(idColumnIndex);
 
-
-            favouriteList.add(new News_item(id, title, articleUrl, imageUrl, description));
+            //add the details to the news items
+            favouriteList.add(new News_item(id, title, description,articleUrl, imageUrl ));
         }
         adapter.notifyDataSetChanged();
         /**
@@ -74,33 +87,17 @@ public class News_favouriteList extends AppCompatActivity {
             startActivity(intent);
         }));
 
-//        favourListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//
-//                News_item item = (News_item) parent.getItemAtPosition(position);
-//
-//                Intent nextActivity = new Intent(Intent.ACTION_VIEW, Uri.parse(item.getNews_url()));
-//                startActivity(nextActivity);
-//
-//
-//            }
-//        });
-
         /**
          * Long click pops up alert dialog asking whether delete or not
+         * source: https://teamtreehouse.com/community/removing-item-from-listview
          */
         favourListView.setOnItemLongClickListener((parent, view, position, id) ->  {
-
                 // it will get the position of selected item from the ListView
-
                 final int selected_item = position;
-
                 new AlertDialog.Builder(News_favouriteList.this).
                         setIcon(android.R.drawable.ic_delete)
-                        .setTitle("Are you sure...")
-                        .setMessage("Do you want to delete the selected item..?")
+                        .setTitle(R.string.favorlist_dialog_title)
+                        .setMessage(R.string.favorlist_dialog_msg)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which)
@@ -112,12 +109,8 @@ public class News_favouriteList extends AppCompatActivity {
                             }
                         })
                         .setNegativeButton("No" , null).show();
-
                 return true;
-
         });
-
-
     }
 
     @Override

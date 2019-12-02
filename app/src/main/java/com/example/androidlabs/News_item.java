@@ -1,17 +1,31 @@
 package com.example.androidlabs;
 
-
 import java.io.Serializable;
-
 /**
- *  * @author Kaikai Mao
- *  * @since 11/25/2019
+ * this class is the object of the news item
+ *  @author Kaikai Mao
+ *  @since 11/25/2019
  */
 public class News_item implements Serializable {
+    /**
+     * news id
+     */
     private long news_id;
+    /**
+     * news title
+     */
     private String news_title;
+    /**
+     * news description
+     */
     private String news_description;
+    /**
+     * news url
+     */
     private String news_url;
+    /**
+     * image url
+     */
     private String news_imageUrl;
 
     public News_item() {
@@ -25,6 +39,11 @@ public class News_item implements Serializable {
         this.news_imageUrl = news_imageUrl;
     }
 
+    /**
+     * the following methods are the setters and getters of all the properties.
+     * these are auto generated methods
+     * @return
+     */
     public long getNews_id() {
         return news_id;
     }
