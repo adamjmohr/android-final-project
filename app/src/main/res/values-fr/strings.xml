@@ -74,11 +74,21 @@ avec conversion de devise. Toutes les devises prises en charge sont répertorié
     <string name="NewsGoToFavoritesButton">Liste de nouvelles préférées</string>
     <string name="author_name">Simon Mao</string>
     <string name="instruction">
-        1. Enter a keyword and click search button \n
-        2. Click on a search result to show the details, such as title, description and image \n
-        3. Read from a saved article list \n
+        1. Entrez un mot clé et cliquez sur le bouton de recherche \ n
+        2. Cliquez sur un résultat de recherche pour afficher les détails, tels que le titre, la description et l'image \ n
+        3. Lire à partir d’une liste d’articles sauvegardée \ n
+
 
     </string>
     <string name="gobacktomain">Retourner</string>
     <string name="help_menu_title_text">Aidez-moi</string>
+
+    <string name="favorlist_dialog_msg">Voulez-vous supprimer lélément sélectionné ..?</string>
+
+    <string name="favorlist_dialog_title">Êtes-vous sûr..</string>
+
+
+    <string name="detailF_dialog_msg">ajouté Nouvelles aux Favoris!</string>
+    <string name="toastmsg_2">Recherche valide !!!</string>
+    <string name="toastmsg_3">Recherche invalide !!! \ n \ n Entrez un mot clé et réessayez.</string>
 </resources>

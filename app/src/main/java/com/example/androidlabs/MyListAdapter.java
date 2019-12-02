@@ -7,16 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import static android.view.View.GONE;
 
 /**
  * MyListAdapter is a subclass of BaseAdapter
  * overrides all the methods of BaseAdapter
- *  * @author Kaikai Mao
- *  * @since 11/25/2019
+ *  @author Kaikai Mao
+ *  @since 11/25/2019
  */
 public class MyListAdapter extends BaseAdapter {
     private ArrayList<News_item> newsItems;
@@ -57,9 +55,6 @@ public class MyListAdapter extends BaseAdapter {
             itemText.setText("Title:  " + Html.fromHtml(item.getNews_title()));
         else
             itemText.setVisibility(GONE);
-
-
-
         return thisRow;
 
     }
