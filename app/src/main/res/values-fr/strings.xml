@@ -39,7 +39,7 @@
     <string name="hello_message">Bonjour!</string>
     <string name="ButtonText">Je suis un bouton</string>
     <string name="currency_main">Obtenez les derniers taux de change
-avec conversion de devise. Toutes les devises prises en charge sont répertoriées ci-dessous. Recherchez une devise avec l’abréviation de code à 3 lettres. Exemple: CAD pour dollars canadiens.</string>
+avec conversion de devise. Toutes les devises prises en charge sont répertoriées ci-dessous. Exemple: CAD pour dollars canadiens. Cliquez sur le bouton ci-dessous pour commencer à convertir des devises!</string>
     <string name="search_text">Rechercher des devises</string>
     <string name="search_button">Chercher</string>
     <string name="currency_api">API utilisée: https://exchangeratesapi.io/</string>
