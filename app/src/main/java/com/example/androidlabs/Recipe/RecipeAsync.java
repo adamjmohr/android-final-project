@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -35,14 +36,24 @@ public class RecipeAsync extends AppCompatActivity {
     protected static RecipeDatabaseHelper dbHelper = null;
     protected static ProgressBar progressBar = null;
     protected static Button searchBtn = null;
+    protected static EditText editText = null;
     protected static boolean chicken;
 
+    /**
+     * This Method is the onCreate() for the class RecipeAsync. It sets up access to the database,
+     * saves last search in SharedPrefrences and implements a progressBar for use with the RecipeQuery which
+     * pulls the data from the weburl on the search. It also shows Toasts to confirm your search.
+     *
+     * @param savedInstanceState Same as param in @see AppCompatActivity.onCreate()
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.recipe_activity);
 
         progressBar = (ProgressBar) findViewById(R.id.recipeSearchProgressBar);
         searchBtn =  findViewById(R.id.recipeSearchButton);
+        editText = findViewById(R.id.searchEditText);
 
 
         super.onCreate(savedInstanceState);
@@ -76,6 +87,15 @@ public class RecipeAsync extends AppCompatActivity {
 
 
     }
+
+    /**
+     * This just makes it go back to the Calling Activity when it is finished passing the normal information
+     *
+     * @param requestCode Same as on @See AppCompatActivity.onActivityResult()
+     * @param resultCode Same as on @See AppCompatActivity.onActivityResult()
+     * @param data Same as on @See AppCompatActivity.onActivityResult()
+     */
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         finish();
@@ -83,6 +103,11 @@ public class RecipeAsync extends AppCompatActivity {
     }
 
 
+    /**
+     * This Class extends AsyncTask, it is used to pull data from JSON link.
+     *
+     *
+     */
     private class RecipeQuery extends AsyncTask<String, Integer, String> {
 
 
@@ -92,6 +117,16 @@ public class RecipeAsync extends AppCompatActivity {
         }
 
 
+        /**
+         * This Overrides AsyncTask.doInBackGround()
+         *
+         * It pulls the search results based on what the droids want you to think.
+         *
+         * Basically it switches between searching Chicken and Lasagna
+         *
+         * @param @See AsyncTask.doInBackground()
+         * @return @See AsyncTask.doInBackground()
+         */
         @Override
         protected String doInBackground(String... strings) {
 
@@ -134,10 +169,10 @@ public class RecipeAsync extends AppCompatActivity {
                     JSONObject r = recipes.getJSONObject(j);
                     String title = r.getString("title");
                     String publisherURL = r.getString("publisher_url");
-                    String recipeID = r.getString("recipe_id");
+                    String recipeID = r.getString("source_url");
                     String imageURL = r.getString("image_url");
 
-                    dbHelper.insertItem(db, TABLE_NAME, title, publisherURL, recipeID, imageURL);
+                    dbHelper.insertItem(TABLE_NAME, title, publisherURL, recipeID, imageURL);
 
                 }
 
@@ -156,12 +191,18 @@ public class RecipeAsync extends AppCompatActivity {
         }
 
 
-
+        /**This method Overrides the super class's onPostExecute.
+         * It calls the super method and turns back on the visibility for the search button and text
+         * It saves the value of the boolean that keeps track of what was last searched sends us back to our listView of the results
+         *
+         * @param results  @See AsyncTask.onPostExecute()
+         */
         @Override                   //Type 3 of Inner Created Class
         protected void onPostExecute(String results) {
             super.onPostExecute(results);
 
             searchBtn.setVisibility(View.VISIBLE);
+            editText.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.INVISIBLE);
 
             SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
@@ -170,15 +211,19 @@ public class RecipeAsync extends AppCompatActivity {
             editor.putBoolean("chicken", chicken);
             editor.commit();
 
-
-
             Intent intent = new Intent(RecipeAsync.this, RecipeSearch.class);
             startActivityForResult(intent, 30);
 
         }
+
+        /**This method takes the param values to update our progress bar.
+         * it keeps the search button and text field out of view while the progress bar is used.
+         * @param values
+         */
         @Override
         protected void onProgressUpdate(Integer ... values) {
             super.onProgressUpdate(values);
+            editText.setVisibility(View.INVISIBLE);
             searchBtn.setVisibility(View.INVISIBLE);
             progressBar.setVisibility(View.VISIBLE);
             progressBar.setProgress(values[0]);

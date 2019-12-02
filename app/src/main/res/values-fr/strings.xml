@@ -60,10 +60,24 @@ avec conversion de devise. Toutes les devises prises en charge sont répertorié
 
     <!-- This is for Recipe Values. Thanks! DNT! -->
 
-    <string name="recipeSearchButtonText">SearchInFrench</string>
-    <string name="recipeSearchEditText">What are you looking for?InFrench</string>
-    <string name="recipeFragmentUrlText">Publisher Url: InFrench</string>
-    <string name="recipeFragmentImageDescription">This Recipe\'s ImageInFrench</string>
+    <string name="recipeSearchButtonText">Chercher</string>
+    <string name="recipeSearchEditText">Qu\'est-ce que tu cherches?</string>
+    <string name="Publisher">Éditeur :</string>
+    <string name="Title">Titre :</string>
+    <string name="recipeFragmentImageDescription">L\'image de cette recette</string>
+    <string name="applicationName">Finale Android </string>
+    <string name="recipeMainButton">Recherche de Recettes !</string>
+    <string name="recipeSearchLasagna">Tu as tapé Lasagna, c\'est ça?</string>
+    <string name="recipeSearchChicken">J\'aime bien Chicken aussi!</string>
+    <string name="recipeVersion">Ver 0.1 beta</string>
+    <string name="gotcha">Je comprends</string>
+    <string name="lastchoicelasagan">Votre dernier choix était de chercher des recettes de lasagnes.</string>
+    <string name="lastchoicechicken">Votre dernier choix était de chercher des recettes de poulet.</string>
+    <string name="recipeapp">App de la Recette</string>
+    <string name="gotorecipe">Aller à la recette</string>
+    <string name="information">Renseignements sur l\'activité</string>
+    <string name="recipeMainHelp">Appuyez sur \"Je comprends"\, puis cliquez sur le bouton pour lancer la recherche ! Ou cliquez sur l\'étoile dans la barre d'outils pour accéder directement à vos Favoris.</string>
+    <string name="recipeSearchHelp">Basculer la liste Résultats / Favoris sur la barre d\'outils. Vous ne pouvez effectuer une recherche qu\'en consultant la liste des résultats. De plus, les droïdes ne vous permettent de chercher que des lasagnes et du poulet.</string>
 
 
     <!-- This is the end of Recipe Values. Thanks! DNT! -->

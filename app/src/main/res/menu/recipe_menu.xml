@@ -5,10 +5,10 @@
     <item android:id="@+id/recipeFav"
         android:title="@string/favorite"
         app:showAsAction="always"
-        android:icon="@drawable/heart_outline" />
+        android:icon="@drawable/star_unfilled" />
 
     <item android:id="@+id/recipeHelp"
-        app:showAsAction="always"
         android:title="@string/help"
+        app:showAsAction="always"
         android:icon="@drawable/about" />
 </menu>

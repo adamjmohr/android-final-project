@@ -9,26 +9,24 @@
 
     <include
         layout="@layout/recipe_toolbar"
-        android:id="@+id/toolbar" />
+        android:id="@+id/recipeToolbar" />
 
     <ListView
-        android:layout_marginTop="?attr/actionBarSize"
         android:id="@+id/recipeListView"
-        android:tag="@string/recipeSearchEditText"
         android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:layout_above="@id/recipeOptionsContainer">
-    </ListView>
+        android:layout_above="@id/recipeOptionsContainer"
+        android:layout_marginTop="?attr/actionBarSize"></ListView>
 
 
     <FrameLayout
+        android:id="@+id/recipeFragmentLocation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/recipeOptionsContainer"
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_toEndOf="@+id/recipeListView"
-        android:layout_below="@+id/toolbar"
-        android:id="@+id/recipeFragmentLocation"
-        android:background="@color/colorAccent"></FrameLayout>
+        android:background="#4F0F3F72"></FrameLayout>
 
     <LinearLayout
         android:id="@+id/recipeOptionsContainer"
@@ -43,7 +41,8 @@
             android:id="@+id/recipeSearchProgressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:max="100"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:autofillHints="@string/recipeSearchEditText" />
+                android:text="@string/recipeSearchEditText" />
 
             <Button
                 android:id="@+id/recipeSearchButton"

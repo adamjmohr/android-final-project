@@ -1,11 +1,19 @@
 package com.example.androidlabs.Recipe;
 
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.androidlabs.R;
 
+/**
+ * Activity to hold our fragments, extends AppCompatActivity
+ */
 public class RecipeEmptyActivity extends AppCompatActivity {
 
+    /**onCreate for RecipeEmptyActivity to hold our fragment
+     * @param savedInstanceState  @see AppCompatActivity.onCreate()
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +28,7 @@ public class RecipeEmptyActivity extends AppCompatActivity {
                 .beginTransaction()
                 .add(R.id.recipeFragmentLocation, dFragment)
                 .commit();
+
+
     }
 }

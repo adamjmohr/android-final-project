@@ -9,22 +9,27 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <include
-        layout="@layout/recipe_toolbar" />
+        layout="@layout/recipe_toolbar"
+        android:id="@+id/recipeToolbar"></include>
 
     <Button
         android:id="@+id/recipeMainButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         android:layout_gravity="bottom"
-        android:text="Button"
-        />
+        android:text="@string/recipeMainButton" />
 
     <ImageView
         android:id="@+id/recipeMainImage"
-        android:layout_height="300dp"
-        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
         android:layout_gravity="center"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:contentDescription="Photo by Dan Gold on Unsplash"
+        android:scaleType="centerInside"
+        android:visibility="visible"
+        android:src="@drawable/recipe_main"
+        />
 
     <TextView
         android:id="@+id/recipeMainText"
@@ -32,6 +37,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:textSize="30dp"
-        android:text="Recipe Search App" />
+        android:text="@string/recipeapp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

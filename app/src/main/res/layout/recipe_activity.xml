@@ -16,7 +16,7 @@
 
     <include
         layout="@layout/recipe_toolbar"
-        android:id="@+id/toolbar" />
+        android:id="@+id/recipeToolbar" />
 
     <LinearLayout
         android:id="@+id/recipeOptionsContainer"
@@ -30,7 +30,8 @@
             android:id="@+id/recipeSearchProgressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:max="100"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:autofillHints="@string/recipeSearchEditText" />
+                android:text="@string/recipeSearchEditText" />
 
             <Button
                 android:id="@+id/recipeSearchButton"
