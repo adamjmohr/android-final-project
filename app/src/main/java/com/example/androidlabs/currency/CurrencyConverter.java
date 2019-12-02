@@ -380,7 +380,6 @@ public class CurrencyConverter extends AppCompatActivity {
             }
 
             //What is returned here will be passed as a parameter to onPostExecute:
-            publishProgress(100);
             return ret;
         }
 
