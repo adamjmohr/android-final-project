@@ -60,14 +60,14 @@ public class CurrencyFragment extends Fragment {
         View result = inflater.inflate(R.layout.fragment_currency, container, false);
 
         TextView currency = result.findViewById(R.id.currency);
-        currency.setText("Base Currency: " + baseCurrency);
+        currency.append(" " + baseCurrency);
 
         TextView target = result.findViewById(R.id.target);
-        target.setText("Converted to: " + targetCurrency);
+        target.append(" " + targetCurrency);
 
         //show the id:
         TextView idView = result.findViewById(R.id.idText);
-        idView.setText("ID= " + id);
+        idView.append(" " + id);
 
         // get the delete button, and add a click listener:
         Button deleteButton = result.findViewById(R.id.deleteButton);
