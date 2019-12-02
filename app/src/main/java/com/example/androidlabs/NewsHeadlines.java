@@ -108,7 +108,7 @@ public class NewsHeadlines extends AppCompatActivity {
         });
 
         Button favorList = findViewById(R.id.go_to_favorite);
-        favorList.setOnClickListener(favorites->{
+        favorList.setOnClickListener(v->{
             Intent newIntent = new Intent(NewsHeadlines.this, News_favouriteList.class);
             startActivity(newIntent);
         });
@@ -215,13 +215,10 @@ public class NewsHeadlines extends AppCompatActivity {
             try {
                 url = new URL(urls[0]);
                 urlConnection = (HttpsURLConnection) url.openConnection();
-
-
-
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                    String line= null;
-                    while((line = bufferedReader.readLine())!=null){
-                        result += line;
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                String line= null;
+                while((line = bufferedReader.readLine())!=null){
+                    result += line;
 
                     getJSONObject(result);
                     return result;
@@ -240,14 +237,14 @@ public class NewsHeadlines extends AppCompatActivity {
          */
         @Override
         protected void onPostExecute(String result) {
-
+            super.onPostExecute(result);
             if (result != null) {
                 myListAdapater.notifyDataSetChanged();
-                Toast.makeText(NewsHeadlines.this, "Data successfully Loaded", LENGTH_SHORT).show();
+                Toast.makeText(NewsHeadlines.this, "Valid search!!!", LENGTH_SHORT).show();
                 progressBar.setVisibility(View.GONE);
 
             } else {
-                Toast.makeText(NewsHeadlines.this, "Failed to load data!", LENGTH_SHORT).show();
+                Toast.makeText(NewsHeadlines.this, "Invalid Search!!!Check network connection and try again", LENGTH_SHORT).show();
             }
 
         }
@@ -275,12 +272,16 @@ public class NewsHeadlines extends AppCompatActivity {
 
                     JSONObject post = posts.optJSONObject(i);
                     String title = post.optString("title");
+                    Log.i("News Asynctask","Found title: " +title);
                     String image = post.optString("urlToImage");
+                    Log.i("News Asynctask","Found urlToImage: " +image);
                     String description = post.optString("description");
+                    Log.i("News Asynctask","Found description: " +description);
                     String url = post.optString("url");
+                    Log.i("News Asynctask","Found url: " +url);
                     item = new News_item();
                     item.setNews_title(title);
-                    item.setNews_url(image);
+                    item.setNews_imageUrl(image);
                     item.setNews_url(url);
                     item.setNews_description(description);
 
