@@ -25,6 +25,9 @@
         <activity android:name=".CarSearchObject" />
         <activity android:name=".CarSearchDetailFragment" />
         <activity android:name=".CarEmptyActivity" />
+        <activity android:name=".CarFavoritesList" />
+        <activity android:name=".CarFavEmpty" />
+        <activity android:name=".CarFavDetailFragment" />
         <activity android:name=".NewsHeadlines" />
         <activity android:name=".Recipe.RecipeSearch"
             android:label="@string/recipeapp"/>
@@ -36,6 +39,9 @@
         <activity android:name=".Recipe.RecipeDetailFragment" />
         <activity android:name=".Recipe.RecipeMain"
             android:label="Recipe Search App"/>
+        <activity android:name=".currency.CurrencyEmptyActivity" />
+        <activity android:name=".News_favouriteList"/>
+        <activity android:name=".News_EmptyActivity"/>
     </application>
 
 </manifest>

@@ -6,21 +6,55 @@
 
     <TextView
         android:id="@+id/currency"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Currency: " />
+        android:layout_marginStart="10dp"
+        android:text="@string/currency_base" />
 
     <TextView
-        android:id="@+id/country"
-        android:layout_width="match_parent"
+        android:id="@+id/currency_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/currency" />
+
+    <TextView
+        android:id="@+id/target"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/currency"
-        android:text="Country: " />
+        android:layout_marginStart="10dp"
+        android:text="@string/currency_converted" />
+
+    <TextView
+        android:id="@+id/target_currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currency"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/target" />
+
+    <TextView
+        android:id="@+id/idText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/target"
+        android:layout_marginStart="10dp"
+        android:text="@string/currency_id" />
+
+    <TextView
+        android:id="@+id/id_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/target"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/idText" />
 
     <Button
-        android:id="@+id/back"
+        android:id="@+id/deleteButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="Back" />
+        android:layout_height="wrap_content"7
+        android:layout_below="@id/idText"
+        android:layout_marginTop="30dp"
+        android:text="@string/currency_delete" />7
 </RelativeLayout>

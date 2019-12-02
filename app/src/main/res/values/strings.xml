@@ -42,21 +42,34 @@
 with currency conversion. All currencies supported are listed below. Search for a currency with the 3 letter code abbreviation. Example: CAD for Canadian dollars.</string>
     <string name="search_text">Search Currencies</string>
     <string name="search_button">Search</string>
+    <string name="currency_api">API used: https://exchangeratesapi.io/</string>
+    <string name="currency_author">Author: Adam Mohr</string>
+    <string name="currency_delete">Delete</string>
+    <string name="currency_date">Date retrieved: </string>
+    <string name="currency_rate">Conversion Rate: </string>
     <string name="convert_button">Go to Converter</string>
     <string name="converter">Convert To</string>
+    <string name="currency_converted">Converted to: </string>
+    <string name="currency_base">Base Currency:  </string>
+    <string name="currency_id">Database ID: </string>
     <string name="currency_amount">Amount</string>
     <string name="currency_from">From</string>
     <string name="currency_to">To</string>
+    <string name="save_favourites">Save to favourites</string>
     <string name="convert">Convert</string>
+    <string name="currency_instructions">Instructions: Enter amount, base currency, and target currency. Click convert to see the amount after converting it to target currency. Save to favourites for future.</string>
 
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
-    <string name="favorite">Favorite</string>
+    <string name="favorite">Favorites</string>
     <string name="help">Help</string>
     <string name="carAuthor">Author: Bruce Tovee</string>
     <string name="carVersion">Version Number:1.0</string>
     <string name="addFavorite">Add to favorites</string>
     <string name="go">Go</string>
+    <string name="back">Back</string>
+    <string name="removeFav">Remove Favorite</string>
+    <string name="carInstructions">Instructions: 1)Enter Latitude and Longitude/2)Click search button/3)Press item for more info, navigation and adding to favorites/Home button returns to home screen/Heart goes to favorite page</string>
 
     <!-- This is for Recipe Values. Thanks! DNT! -->
 
@@ -81,5 +94,28 @@ with currency conversion. All currencies supported are listed below. Search for 
 
     <!-- This is the end of Recipe Values. Thanks! DNT! -->
 
+    <string name="News_favorite_welcome">Your Favourite News</string>
+    <string name="NewsGoBackToMainButton">Back to News Search</string>
+    <string name="news_main_toast">Enjoy Reading News!</string>
+    <string name="NewsView">webview</string>
+    <string name="NewsSave">Save</string>
+    <string name="Newsback">Back</string>
+    <string name="News_item_page">News Article</string>
+    <string name="news_search_hint">Type a keyword here</string>
+    <string name="NewsSearchButton">Search</string>
+    <string name="NewsGoToFavoritesButton">Favorite news List</string>
+    <string name="author_name">Simon Mao</string>
+    <string name="instruction">
+        1. Enter a keyword and click search button \n
+        2. Click on a search result to show the details, such as title, description and image \n
+        3. Read from a saved article list \n
+    </string>
+    <string name="favorlist_dialog_msg">Do you want to delete the selected item..?</string>
 
+    <string name="favorlist_dialog_title">Are you sure..</string>
+    <string name="gobacktomain">Go Back</string>
+    <string name="help_menu_title_text">Help</string>
+    <string name="detailF_dialog_msg">added News to Favourites!</string>
+    <string name="toastmsg_2">Valid search!!!</string>
+    <string name="toastmsg_3">Invalid Search!!! \n\n Enter a key word and try again</string>
 </resources>

@@ -5,27 +5,38 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageAbout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/about" />
-
+        android:id="@+id/imageView4"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/icon_help"
+        />
     <TextView
-        android:id="@+id/carAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/carAuthor" />
+        android:text="@string/author_name"
+        android:gravity="center"/>
 
     <TextView
-        android:id="@+id/carVersion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/carVersion" />
+        android:text="V1.0.0"
+        android:gravity="center"/>
 
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/carInstructions" />
+        android:text="@string/instruction"
+        />
+
+
+
+
+
+
+
+
+
+
 
 </LinearLayout>

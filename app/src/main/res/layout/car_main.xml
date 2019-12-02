@@ -14,7 +14,7 @@
         android:ems="10"
         android:inputType="text"
         android:layout_below="@id/carToolbar"
-        android:layout_alignParentStart="true"
+        android:layout_toRightOf="@id/textLat"
         android:hint="@string/latitude"/>
 
     <EditText
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        android:layout_alignParentStart="true"
+        android:layout_toRightOf="@id/textLon"
         android:layout_below="@id/carEditLat"
         android:hint="@string/longitude"/>
 
@@ -51,4 +51,26 @@
         android:layout_alignBottom="@id/carButtonSearch"
         android:visibility="invisible"
         android:layout_below="@id/carEditLong"/>
+
+    <TextView
+        android:id="@+id/textLat"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/carToolbar"
+        android:layout_alignParentStart="true"
+        android:textSize="20sp"
+        android:text="Lat: " />
+
+    <TextView
+        android:id="@+id/textLon"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/carEditLat"
+        android:textSize="20sp"
+        android:layout_alignParentStart="true"
+        android:text="Lon: " />
+
+
 </RelativeLayout>

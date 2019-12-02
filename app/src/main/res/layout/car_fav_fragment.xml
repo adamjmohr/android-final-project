@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageButton
-        android:id="@+id/carFragBackButton"
+        android:id="@+id/carFavFragBackButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
@@ -15,29 +15,36 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/carDetailTitle"
-        android:layout_below="@id/carFragBackButton"
+        android:id="@+id/carFavDetailId"
+        android:layout_below="@id/carFavFragBackButton"
         android:layout_alignParentStart="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/carDetailPhoneNum"
-        android:layout_below="@id/carDetailTitle"
+        android:id="@+id/carFavDetailTitle"
+        android:layout_below="@id/carFavDetailId"
         android:layout_alignParentStart="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/carDetailLat"
-        android:layout_below="@id/carDetailPhoneNum"
+        android:id="@+id/carFavDetailPhoneNum"
+        android:layout_below="@id/carFavDetailTitle"
         android:layout_alignParentStart="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/carDetailLon"
-        android:layout_below="@id/carDetailLat"
+        android:id="@+id/carFavDetailLat"
+        android:layout_below="@id/carFavDetailPhoneNum"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/carFavDetailLon"
+        android:layout_below="@id/carFavDetailLat"
         android:layout_alignParentStart="true"/>
 
     <Button
@@ -45,12 +52,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="@string/go"
-        android:id="@+id/carDetailGoButton"/>
+        android:id="@+id/carFavDetailGoButton"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/carDetailGoButton"
-        android:text="@string/addFavorite"
-        android:id="@+id/carDetailFavoriteButton"/>
+        android:layout_above="@id/carFavDetailGoButton"
+        android:text="@string/removeFav"
+        android:id="@+id/carFavDetailFavoriteButton"/>
 </RelativeLayout>

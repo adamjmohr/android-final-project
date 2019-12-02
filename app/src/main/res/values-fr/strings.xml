@@ -42,12 +42,22 @@
 avec conversion de devise. Toutes les devises prises en charge sont répertoriées ci-dessous. Recherchez une devise avec l’abréviation de code à 3 lettres. Exemple: CAD pour dollars canadiens.</string>
     <string name="search_text">Rechercher des devises</string>
     <string name="search_button">Chercher</string>
+    <string name="currency_api">API utilisée: https://exchangeratesapi.io/</string>
+    <string name="currency_author">Auteur: Adam Mohr</string>
+    <string name="currency_delete">Supprimer</string>
+    <string name="currency_date">Date de récupération: </string>
+    <string name="currency_rate">Taux de conversion: </string>
     <string name="convert_button">Aller au convertisseur</string>
     <string name="converter">Convertir en</string>
+    <string name="currency_converted">Converti en: </string>
+    <string name="currency_base">Devise de base: </string>
+    <string name="currency_id">ID de base de: </string>
     <string name="currency_amount">Montant</string>
     <string name="currency_from">De</string>
     <string name="currency_to">À</string>
+    <string name="save_favourites">Enregistrer dans les favoris</string>
     <string name="convert">Convertir</string>
+    <string name="currency_instructions">Instructions: Entrez le montant, la devise de base et la devise cible. Cliquez sur Convertir pour voir le montant après l\'avoir converti dans la devise cible. Enregistrer dans les favoris pour l\'avenir.</string>
 
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
@@ -81,5 +91,33 @@ avec conversion de devise. Toutes les devises prises en charge sont répertorié
 
 
     <!-- This is the end of Recipe Values. Thanks! DNT! -->
-</resources>
 
+    <string name="back">Retour</string>
+    <string name="removeFav">Supprimer le Favorie</string>
+    <string name="carInstructions">Instructions: 1) Entrez Latitude et Longitude / 2) Cliquez sur le bouton de recherche / 3) Appuyez sur l\'élément pour obtenir plus d\'informations, la navigation et l\'ajout aux favoris / Le bouton Accueil permet de revenir à l\'écran d\'accueil / Le cœur passe à la page des favoris</string>
+
+    <string name="News_favorite_welcome">Vos nouvelles préférées</string>
+    <string name="NewsGoBackToMainButton">Retourner au principal</string>
+    <string name="news_main_toast">Bonne lecture News!</string>
+    <string name="NewsView">webview</string>
+    <string name="NewsSave">Enregistrer</string>
+    <string name="Newsback">Retourner</string>
+    <string name="News_item_page">Article de nouvelles</string>
+    <string name="news_search_hint">Tapez un mot clé ici</string>
+    <string name="NewsSearchButton">Chercher</string>
+    <string name="NewsGoToFavoritesButton">Liste de nouvelles préférées</string>
+    <string name="author_name">Simon Mao</string>
+
+
+    <string name="gobacktomain">Retourner</string>
+    <string name="instruction">Reportez-vous à la version anglaise</string>
+    <string name="help_menu_title_text">Help</string>
+    <string name="favorlist_dialog_msg">Voulez-vous supprimer lélément sélectionné ..?</string>
+
+    <string name="favorlist_dialog_title">Êtes-vous sûr..</string>
+
+
+    <string name="detailF_dialog_msg">ajouté Nouvelles aux Favoris!</string>
+    <string name="toastmsg_2">Recherche valide !!!</string>
+    <string name="toastmsg_3">Recherche invalide !!! \ n \ n Entrez un mot clé et réessayez.</string>
+</resources>

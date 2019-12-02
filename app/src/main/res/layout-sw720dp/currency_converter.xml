@@ -47,7 +47,7 @@
 
     <ListView
         android:id="@+id/theList"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_below="@id/save_favourites" />
 
@@ -87,5 +87,12 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:visibility="invisible" />
+
+    <FrameLayout
+        android:id="@+id/fragmentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/save_favourites"
+        android:layout_toEndOf="@id/theList" />
 
 </RelativeLayout>

@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/imageAbout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/about" />
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/carAuthor"
+        android:id="@+id/currencyAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/carAuthor" />
+        android:text="@string/currency_author" />
 
     <TextView
-        android:id="@+id/carVersion"
+        android:id="@+id/currencyVersion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/carVersion" />
@@ -26,6 +20,12 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/carInstructions" />
+        android:text="@string/currency_instructions" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/currency_api" />
 
 </LinearLayout>

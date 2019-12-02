@@ -2,10 +2,17 @@ package com.example.androidlabs;
 
 import android.os.Bundle;
 
+/**
+ * Handles inflating of search fragment for phones
+ */
 import androidx.appcompat.app.AppCompatActivity;
 
 public class CarEmptyActivity extends AppCompatActivity {
 
+    /**
+     * Create and display Search object fragment
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -14,8 +21,8 @@ public class CarEmptyActivity extends AppCompatActivity {
         Bundle dataToPass = getIntent().getExtras();
 
         CarSearchDetailFragment dFragment = new CarSearchDetailFragment();
-        dFragment.setArguments(dataToPass); //pass data to the the fragment
-        dFragment.setTablet(false); //tell the Fragment that it's on a phone.
+        dFragment.setArguments(dataToPass);
+        dFragment.setTablet(false);
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.carFragmentLocation, dFragment)

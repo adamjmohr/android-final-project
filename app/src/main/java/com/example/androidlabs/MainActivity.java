@@ -48,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(electricCar);
                 break;
 
-            case R.id.app3:
+            case R.id.app4:
                 Intent recipes = new Intent(MainActivity.this, RecipeMain.class);
                 startActivity(recipes);
                 break;
 
-            case R.id.app4:
+            case R.id.app3:
                 Intent newsHeadlines = new Intent(MainActivity.this, NewsHeadlines.class);
                 startActivity(newsHeadlines);
                 break;
